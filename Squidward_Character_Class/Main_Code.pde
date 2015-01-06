@@ -8,6 +8,8 @@ void setup() {
 void draw() {
   background(0);
   squid.display();
+  squid.move();
+  squid.jump();
   
 }
 
