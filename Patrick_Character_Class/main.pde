@@ -8,5 +8,6 @@ void setup(){
 void draw(){
   background(0);
   pat.display();
-  
+  pat.jump();
+  pat.move();
 }
