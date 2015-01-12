@@ -31,6 +31,12 @@ class Squidward {
         if (keyCode==DOWN) {
           loc.y+=1;
         }
+        if(keyCode==LEFT){
+          loc.x-=1;
+        }
+        if(keyCode==RIGHT){
+          loc.x+=1;
+        }
       }
     }
   }
