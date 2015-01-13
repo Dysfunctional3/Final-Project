@@ -1,73 +1,60 @@
 class Spongebob {
-  PVector ssz;
+  float ssz;
+  PVector spongesz;
   PVector loc, acc, vel;
   PImage spongebob;
-  float grav;
-  float ground;
   float jumpspeed;
-  //  float drag;
-  float isjumping;
-  float yinc;
+  boolean isjumping;
+  float ground;
+
   Spongebob() {
-    ssz= new PVector(75, 100);
-    ground=500;
+    spongesz= new PVector(75, 100);
+    ground=height;
     spongebob= loadImage("basic spongebob edit.png");
     vel= new PVector(0, 0);
-    loc= new PVector(500, ground);
+    loc= new PVector(width/2, ground-spongesz.y/2);
     acc= new PVector(0, 0);
-    grav=.5;
     jumpspeed=15;
-    //    drag=1;
-    isjumping=0;
+    isjumping=false;
   }
   void display() {
-    image(spongebob, loc.x, loc.y, ssz.x, ssz.y);
+    image(spongebob, loc.x, loc.y, spongesz.x, spongesz.y);
   }
   void move() {
     vel.add(acc);
     loc.add(vel);
-    if (keyPressed==true) {
-      if (key==CODED) {
-        if (keyCode==RIGHT) {
-          loc.x++;
-        }
-        if (keyCode==LEFT) {
-          loc.x--;
-        }
+    if (isjumping && loc.y +spongesz.y/2>=height) {
+      loc.y=height-spongesz.y/2;
+      vel.y=0;
+      acc.y=0;
+      isjumping=false;
+    }
+    if (keyPressed) {
+      if (keyCode==RIGHT) {
+        loc.x+=1;
+      } else {
+        loc.x+=0;
+      }
+
+      if (keyCode==LEFT) {
+        loc.x+=-1;
+      } else {
+        loc.x+=0;
       }
     }
   }
-
   void jump() {
-    if (keyPressed==true) {
-      if (key==CODED) {
-        if (keyCode== UP || isjumping==0) { 
-          //          if (loc.y<ground)
-          //            vel.y+=grav;
-          //        } else {
-          //          vel.y=0;
-          //        }
-          //        if (loc.y>=ground) {
-          //          vel.y= -jumpspeed;
-          //          jumpspeed=drag;
-          //          ssz.y-=jumpspeed;
-          isjumping=1;
-          jumpspeed=-15;
-        }
-      }
+    // if(keyCode==RIGHT){
+    //       loc.x+=1; 
+    //      }
+    if (!isjumping) {
+      vel.y=-8;
+      acc.y=.15;
+      //      if(keyCode==RIGHT){
+      //       loc.x+=1; 
+      //      }
+      isjumping=true;
     }
-  
-if (isjumping==1) {
-  loc.y--;
-}
-if(keyPressed==false){
-isjumping=1;
-yinc=0;
-}
-//if(isjumping==1){
-// isjumping=1;
-//yinc=0; 
-//}
-
   }
 }
+
