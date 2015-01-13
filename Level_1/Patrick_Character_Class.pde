@@ -3,14 +3,15 @@ class Patrick {
   PImage patrick;
   PVector sz;
   PVector loc, vel, acc;
+  boolean jumping = false;
 
   Patrick() {
     //initialize
     patrick = loadImage("patrick.png");
     sz = new PVector(74, 100);
-    loc = new PVector (width/2, height/2);
+    loc = new PVector (width/2, height- sz.y/2); 
     vel = new PVector (0, 0);
-    acc = new PVector (0, 0);
+    acc = new PVector (0, 1);
   }
 
   //display image
@@ -21,8 +22,8 @@ class Patrick {
   }
 
   void move() {
-    vel.add(acc);
     loc.add(vel);
+    vel.add(acc);
 
     if (keyPressed) {
       if (keyCode == LEFT) {
@@ -31,20 +32,14 @@ class Patrick {
       if (keyCode == RIGHT) {
         loc.x+=2;
       }
-    }
-  }
-
-  void jump() {
-    if (keyPressed) {
-      if (key == CODED) {
-        if (keyCode == UP) {
-          loc.y-=2;
-        }
-        if (keyCode == DOWN) {
-          loc.y+=2;
-        }
+        
       }
     }
+  
+
+  void jump() {
+  
+    
   }
 
   void die() {

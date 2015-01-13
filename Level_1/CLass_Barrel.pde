@@ -11,9 +11,9 @@ class Barrel {
 
 
   Barrel() {
-    barrelpic = loadImage("barrel_final.jpg");
+    barrelpic = loadImage("barrel.png");
     sz = new PVector (81,102);
-    loc = new PVector (width/2, height-sz.y);
+    loc = new PVector (width/2, height-sz.y/2);
     barrelTop = loc.y - sz.y/2;
     barrelLeft = loc.x-sz.x/2;
     barrelRight = loc.x +sz.x/2;
@@ -25,8 +25,8 @@ class Barrel {
 
   void jumpedOnBy(Patrick play) {
     if (play.loc.x >=barrelLeft && play.loc.x <= barrelRight) {
-      if (play.loc.y <= barrelTop) {
-        play.loc.y = barrelTop - sz.y/2;
+      if (play.loc.y >= barrelTop) {
+        play.loc.y = barrelTop - play.sz.y;
       }
     }
   }

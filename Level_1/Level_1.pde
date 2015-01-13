@@ -8,6 +8,7 @@ void setup() {
   krustyKrab = loadImage("krusty_krab_final.jpg");
   pat = new Patrick ();
   barr = new Barrel();
+  imageMode(CENTER);
 }
 
 void draw() {
