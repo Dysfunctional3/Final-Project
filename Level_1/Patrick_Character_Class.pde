@@ -3,7 +3,7 @@ class Patrick {
   PImage patrick;
   PVector sz;
   PVector loc, vel, acc;
-  boolean jumping = false;
+  boolean isjumping = false;
 
   Patrick() {
     //initialize
@@ -32,14 +32,11 @@ class Patrick {
       if (keyCode == RIGHT) {
         loc.x+=2;
       }
-        
-      }
     }
-  
+  }
+
 
   void jump() {
-  
-    
   }
 
   void die() {
