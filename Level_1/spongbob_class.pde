@@ -59,15 +59,15 @@ class Spongebob {
 
   void landOnBarrel(Barrel b) {
     //doesn't work
-    if (loc.y + sz.y/2 > b.loc.y + b.sz.y/2) {    //if bottom of spongebob touches the top of the barrel and...
+    if (loc.y + sz.y/2 > b.loc.y - b.sz.y/2) {    //if bottom of spongebob touches the top of the barrel and...
       if (loc.x+sz.x/2 > b.loc.x-b.sz.x/2) {      //... if the right side touches the left side of the barrel,
-        loc.x = b.loc.x - b.sz.x/2 -sz.x/2;     //then set the location there.
+        loc.x = b.loc.x - b.sz.x/2 - sz.x/2;     //then set the location there.
       } 
-      if (loc.x-sz.x/2 < b.loc.x-b.sz.x/2) {      //...if the left side touches the right side of the barrel,
-        loc.x = b.loc.x - b.sz.x/2 -sz.x/2;     //then set the location there
+      if (loc.x-sz.x/2 < b.loc.x+b.sz.x/2) {      //...if the left side touches the right side of the barrel,
+        loc.x = b.loc.x + b.sz.x/2 + sz.x/2;     //then set the location there
       }
     }
-    if (loc.x + sz.x/2>= b.loc.x - b.sz.x/2 && loc.x <= b.loc.x +b.sz.x/2) {
+    if ((loc.x + sz.x/2 >= b.loc.x - b.sz.x/2) && (loc.x <= b.loc.x + b.sz.x/2)) {
       if (loc.y + sz.y/2 >b.loc.y - sz.y/2) {
         loc.y = b.loc.y - b.sz.y/2 - sz.y/2;
       }
