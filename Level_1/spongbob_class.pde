@@ -7,11 +7,11 @@ class Spongebob {
   float ground;
 
   Spongebob() {
-    sz= new PVector(75, 100);
+    sz= new PVector(100, 100);
     ground=height;
     spongebob= loadImage("basic spongebob edit.png");
     vel= new PVector(0, 0);
-    loc= new PVector(width/3, ground-sz.y/2);
+    loc= new PVector(width/4, ground-sz.y/2);
     acc= new PVector(0, 0);
     jumpspeed=15;
     isjumping=false;
@@ -56,16 +56,26 @@ class Spongebob {
       isjumping=true;
     }
   }
-  
-  void landOnBarrel(Barrel b){
-    if (loc.x +sz.x/2 >= b.loc.x-b.sz.x/2 && loc.x <=
-    
-    && loc.x -sz.x/2<=b.loc.x +b.sz.x/2){
-      if (loc.y + sz.x/2<= b.loc.y - b.sz.y/2){
-        loc.y = b.loc.y - b.sz.y/2 - sz.x/2;
+
+  void landOnBarrel(Barrel b) {
+    //doesn't work
+    if (loc.y + sz.y/2 > b.loc.y + b.sz.y/2) {    //if bottom of spongebob touches the top of the barrel and...
+      if (loc.x+sz.x/2 > b.loc.x-b.sz.x/2) {      //... if the right side touches the left side of the barrel,
+        loc.x = b.loc.x - b.sz.x/2 -sz.x/2;     //then set the location there.
+      } 
+      if (loc.x-sz.x/2 < b.loc.x-b.sz.x/2) {      //...if the left side touches the right side of the barrel,
+        loc.x = b.loc.x - b.sz.x/2 -sz.x/2;     //then set the location there
       }
-   }
+    }
+    if (loc.x + sz.x/2>= b.loc.x - b.sz.x/2 && loc.x <= b.loc.x +b.sz.x/2) {
+      if (loc.y + sz.y/2 >b.loc.y - sz.y/2) {
+        loc.y = b.loc.y - b.sz.y/2 - sz.y/2;
+      }
+    }
+    // */
+
+    // try again
+    // if (loc.y + sz.y/2 < b.loc.y + b.sz.y/2){
   }
 }
-
 

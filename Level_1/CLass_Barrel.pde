@@ -23,6 +23,7 @@ class Barrel {
     image(barrelpic, loc.x, loc.y, sz.x, sz.y);
   }
 
+//don't use this
   void jumpedOnBy(Spongebob play) {
     // void jumpedOnBy(Patrick play) {
     if (play.loc.x >=barrelLeft - play.sz.x/2 && play.loc.x <= barrelRight) {
