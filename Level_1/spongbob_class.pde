@@ -34,22 +34,20 @@ class Spongebob {
     }
     if (keyPressed) {
       if (keyCode==RIGHT) {
-        loc.x+=1;
+        loc.x+=3;
       } else {
         loc.x+=0;
       }
 
       if (keyCode==LEFT) {
-        loc.x+=-1;
+        loc.x+=-3;
       } else {
         loc.x+=0;
       }
     }
   }
   void jump() {
-    // if(keyCode==RIGHT){
-    //       loc.x+=1; 
-    //      }
+    //if it's not jumping and mouse pressed, jump
     if (!isjumping) {
       vel.y=-8;
       acc.y=.15;
@@ -61,7 +59,7 @@ class Spongebob {
   }
 
   void landOnBarrel(Barrel b) {
-    //if land on barrel instead of ground
+    // land on barrel after juping
     if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel   // sz.x/4 to try to make more realistic
       if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
         loc.y=b.loc.y-b.sz.y/2-sz.y/2;
@@ -73,7 +71,7 @@ class Spongebob {
       }
     } else if (onBarrel && !(loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2)) {
       isjumping = true; 
-      acc.y = .1;
+      acc.y = .2;
       onBarrel = false;
       //later: fix spongebob not jumping when right next to barrel
     }

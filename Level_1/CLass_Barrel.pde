@@ -10,13 +10,16 @@ class Barrel {
   float barrelRight;
 
 
-  Barrel() {
+  Barrel(float x, float y) {
     barrelpic = loadImage("barrel.png");
     sz = new PVector (barrelpic.width,barrelpic.height);
-    loc = new PVector (width/2, height-sz.y/2);
-    barrelTop = loc.y - sz.y/2;
-    barrelLeft = loc.x-sz.x/2;
-    barrelRight = loc.x +sz.x/2;
+    loc = new PVector (x,y);
+//    barrelTop = loc.y - sz.y/2;
+//    barrelLeft = loc.x-sz.x/2;
+//    barrelRight = loc.x +sz.x/2;
+    
+        x = loc.x;
+        y = loc.y;
   }
 
   void display() {
@@ -24,14 +27,14 @@ class Barrel {
   }
 
 //don't use this
-  void jumpedOnBy(Spongebob play) {
-    // void jumpedOnBy(Patrick play) {
-    if (play.loc.x >=barrelLeft - play.sz.x/2 && play.loc.x <= barrelRight) {
-
-      if (play.loc.y <= barrelTop - play.sz.y/2) {
-        play.loc.y = barrelTop - play.sz.y/2;
-      }
-    }
-  }
+//  void jumpedOnBy(Spongebob play) {
+//    // void jumpedOnBy(Patrick play) {
+//    if (play.loc.x >=barrelLeft - play.sz.x/2 && play.loc.x <= barrelRight) {
+//
+//      if (play.loc.y <= barrelTop - play.sz.y/2) {
+//        play.loc.y = barrelTop - play.sz.y/2;
+//      }
+//    }
+//  }
 }
 

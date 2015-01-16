@@ -1,5 +1,5 @@
 PImage krustyKrab;
-Barrel barr;
+Barrel barr, barr2;
 Patrick pat;
 Spongebob sponge;
 
@@ -9,7 +9,8 @@ void setup() {
   krustyKrab = loadImage("krusty_krab_final.jpg");
   pat = new Patrick ();
   sponge = new Spongebob ();
-  barr = new Barrel();
+  barr = new Barrel(width/2, height-75);
+  barr2 = new Barrel(width/2+100, height-275);
   imageMode(CENTER);
 }
 
@@ -22,9 +23,12 @@ void draw() {
   sponge.display();
   sponge.move();
   sponge.landOnBarrel(barr);
+  sponge.landOnBarrel(barr2);
   sponge.touchBarrel(barr);
+  sponge.landOnBarrel(barr2);
 
   barr.display();
+  barr2.display();
   //barr.jumpedOnBy(pat);
   //  barr.jumpedOnBy(sponge);
 }
