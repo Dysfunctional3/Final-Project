@@ -7,6 +7,7 @@ class Nastyburger {
 //  int life;
 //nastyburger constructor
   Nastyburger() {
+    //initialize variables
     pattysz= new PVector(100, 50);
     nastyburger= loadImage("nasty_patty.png");
     vel= new PVector(1, 0);
