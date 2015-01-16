@@ -1,4 +1,6 @@
+//declare spongebab class
 class Spongebob {
+  //declare variables
   float ssz;
   PVector spongesz;
   PVector loc, acc, vel;
@@ -6,8 +8,9 @@ class Spongebob {
   float jumpspeed;
   boolean isjumping;
   float ground;
-
+//spongebob constructor
   Spongebob() {
+    //initialize variables
     spongesz= new PVector(75, 100);
     ground=height;
     spongebob= loadImage("basic spongebob edit.png");
@@ -18,24 +21,28 @@ class Spongebob {
     isjumping=false;
   }
   void display() {
+    //display sponge bob
     image(spongebob, loc.x, loc.y, spongesz.x, spongesz.y);
   }
   void move() {
+   // move spongebob
     vel.add(acc);
     loc.add(vel);
+    //make spongebob jump
     if (isjumping && loc.y +spongesz.y/2>=height) {
       loc.y=height-spongesz.y/2;
       vel.y=0;
       acc.y=0;
       isjumping=false;
     }
+    //if right arrow key is pressed, spongebob ,moves right
     if (keyPressed) {
       if (keyCode==RIGHT) {
         loc.x+=1;
       } else {
         loc.x+=0;
       }
-
+//if left arrow key pressed, spongebob moves left
       if (keyCode==LEFT) {
         loc.x+=-1;
       } else {
@@ -44,15 +51,11 @@ class Spongebob {
     }
   }
   void jump() {
-    // if(keyCode==RIGHT){
-    //       loc.x+=1; 
-    //      }
+//if jumpig is true, spongebob jumps
     if (!isjumping) {
       vel.y=-8;
       acc.y=.15;
-      //      if(keyCode==RIGHT){
-      //       loc.x+=1; 
-      //      }
+
       isjumping=true;
     }
   }
