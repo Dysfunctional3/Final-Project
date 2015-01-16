@@ -8,7 +8,7 @@ class Patrick {
   Patrick() {
     //initialize
     patrick = loadImage("patrick.png");
-    sz = new PVector(74, 100);
+    sz = new PVector(patrick.width,patrick.height);
     loc = new PVector (width/2, height- sz.y/2); 
     vel = new PVector (0, 0);
     acc = new PVector (0, 1);

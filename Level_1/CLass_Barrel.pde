@@ -12,7 +12,7 @@ class Barrel {
 
   Barrel() {
     barrelpic = loadImage("barrel.png");
-    sz = new PVector (81, 102);
+    sz = new PVector (barrelpic.width,barrelpic.height);
     loc = new PVector (width/2, height-sz.y/2);
     barrelTop = loc.y - sz.y/2;
     barrelLeft = loc.x-sz.x/2;
