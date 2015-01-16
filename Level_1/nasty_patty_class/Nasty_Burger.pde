@@ -24,11 +24,11 @@ class Nastyburger {
     vel.add(acc);
     loc.add(vel);
     //bounce off right screen
-    if (loc.x+pattysz.x/2>width) {
+    if (loc.x+pattysz.x/4>width) {
       vel.x*=-1;
     }
     //bounce off left screen
-    if (loc.x-pattysz.x<0) {
+    if (loc.x-pattysz.x/5<0) {
       vel.x*=-1;
     }
   }
