@@ -22,6 +22,7 @@ void draw() {
     sponge.display();
     sponge.move();
     sponge.landOnBarrel(barr);
+    sponge.touchBarrel(barr);
 
   barr.display();
   //barr.jumpedOnBy(pat);

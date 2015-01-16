@@ -58,24 +58,55 @@ class Spongebob {
   }
 
   void landOnBarrel(Barrel b) {
-    //doesn't work
-    if (loc.y + sz.y/2 > b.loc.y - b.sz.y/2) {    //if bottom of spongebob touches the top of the barrel and...
-      if (loc.x+sz.x/2 > b.loc.x-b.sz.x/2) {      //... if the right side touches the left side of the barrel,
-        loc.x = b.loc.x - b.sz.x/2 - sz.x/2;     //then set the location there.
-      } 
-      if (loc.x-sz.x/2 < b.loc.x+b.sz.x/2) {      //...if the left side touches the right side of the barrel,
-        loc.x = b.loc.x + b.sz.x/2 + sz.x/2;     //then set the location there
+    //if land on barrel instead of ground
+    if (isjumping && loc.x + sz.x/4> b.loc.x - b.sz.x/2 && loc.x - sz.x/4 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel   // sz.x/4 to try to make more realistic
+      if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
+        loc.y=b.loc.y-b.sz.y/2-sz.y/2;
+        vel.y=0;
+        acc.y=0;
+        isjumping=false;
       }
     }
-    if ((loc.x + sz.x/2 >= b.loc.x - b.sz.x/2) && (loc.x <= b.loc.x + b.sz.x/2)) {
-      if (loc.y + sz.y/2 >b.loc.y - sz.y/2) {
-        loc.y = b.loc.y - b.sz.y/2 - sz.y/2;
-      }
-    }
-    // */
+  }
 
-    // try again
-    // if (loc.y + sz.y/2 < b.loc.y + b.sz.y/2){
+  void touchBarrel( Barrel b) {  
+    //doesn't work
+    /*   if (loc.y + sz.y/2 > b.loc.y - b.sz.y/2) {    //if bottom of spongebob touches the top of the barrel and...
+     if (loc.x+sz.x/2 > b.loc.x-b.sz.x/2) {      //... if the right side touches the left side of the barrel,
+     loc.x = b.loc.x - b.sz.x/2 - sz.x/2;     //then set the location there.
+     } 
+     if (loc.x-sz.x/2 < b.loc.x+b.sz.x/2) {      //...if the left side touches the right side of the barrel,
+     loc.x = b.loc.x + b.sz.x/2 + sz.x/2;     //then set the location there
+     }
+     }
+     if ((loc.x + sz.x/2 >= b.loc.x - b.sz.x/2) && (loc.x <= b.loc.x + b.sz.x/2)) {
+     if (loc.y + sz.y/2 >b.loc.y - sz.y/2) {
+     loc.y = b.loc.y - b.sz.y/2 - sz.y/2;
+     }
+     }
+     }
+     */
+
+    // if (loc.y - b.loc.y <= sz.y/2 + b.sz.y/2) {
+    /*  if (loc.x + sz.x/2 + 20> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 -20< b.loc.x + b.sz.x/2 && loc.y >= b.loc.y - sz.y/2 + b.sz.y/2) {   // +/- 20 added because the corners of the barrel is empty space
+     loc.y = b.loc.y - sz.y/2 + b.sz.y/2;
+     }
+     */
+     
+     //THIS WORKS
+     //still have to figure out what to do if keyCode == " "
+    if (abs(loc.x - b.loc.x) <= sz.x/2 + b.sz.x/2) {
+      if (loc.y +  sz.y/2 > b.loc.y-b.sz.y/2 && loc.y - sz.y/2 < b.loc.y+b.sz.y/2) {
+        /* if (loc.y + sz.y/2 > b.loc.y - b.sz.y/2){
+         loc.x+=0;  */
+        if (keyCode == RIGHT) {
+          loc.x = loc.x - 1;
+        }
+        if (keyCode == LEFT) {
+          loc.x = loc.x+1;
+        }
+      }
+    }
   }
 }
 
