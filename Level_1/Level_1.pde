@@ -16,21 +16,22 @@ void setup() {
 void draw() {
   background(krustyKrab);
 
-//  pat.display();
-//  pat.move();
+  //  pat.display();
+  //  pat.move();
 
-    sponge.display();
-    sponge.move();
-    sponge.landOnBarrel(barr);
-    sponge.touchBarrel(barr);
+  sponge.display();
+  sponge.move();
+  sponge.landOnBarrel(barr);
+  sponge.touchBarrel(barr);
 
   barr.display();
   //barr.jumpedOnBy(pat);
-//  barr.jumpedOnBy(sponge);
+  //  barr.jumpedOnBy(sponge);
 }
 
-void keyPressed(){
-  if(keyCode==' '){
-       sponge.jump(); 
+void keyPressed() {
+  if (keyCode==' ') {
+    sponge.jump();
+  }
 }
-}
+
