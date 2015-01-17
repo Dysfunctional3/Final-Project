@@ -1,3 +1,5 @@
+//WORRY ABOUT SPONGEBOB FIRST
+
 class Patrick {
   //declare
   PImage patrick;
