@@ -2,7 +2,6 @@ class Spongebob {
   PVector sz;
   PVector loc, acc, vel;
   PImage spongebob;
-  float jumpspeed;
   boolean isjumping;
   boolean onBarrel;
   float ground;
@@ -25,6 +24,13 @@ class Spongebob {
     life = 10;
 
   }
+  
+  void textDisplay(){
+    textSize(25);
+    text("Lives: " + life, 100, 30);
+  }
+  
+  
   void display() {
     image(spongebob, loc.x, loc.y, sz.x,sz.y);
   }
@@ -77,7 +83,7 @@ class Spongebob {
       }
     } else if (onBarrel && !(loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2)) {
       isjumping = true; 
-      acc.y = .1;
+      acc.y = .15;
       onBarrel = false;
       //later: fix spongebob not jumping when right next to barrel
     }

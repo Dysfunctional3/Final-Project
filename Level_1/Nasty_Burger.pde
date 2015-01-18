@@ -49,7 +49,10 @@ class Nastyburger {
 
     //when touching character, kill him
     void hurtSponge(Spongebob s) {
-      
+      if (dist(loc.x,loc.y,s.loc.x,s.loc.y) < sz.x/2+s.sz.x/2){
+        s.life--;
+        s.loc.x = s.sz.x/2;   // send spongebob back to beginning
+      }
       
     }
   }

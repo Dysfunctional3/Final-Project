@@ -39,7 +39,18 @@ class Barrel {
     //kelp placed next to barrels to cover up glitch
     //lose 1 life if spongebob touches kelp
     
+    //left kelp
+    if (dist(kloc.x,kloc.y,s.loc.x,s.loc.y) < ksz.x/2+s.sz.x/2){
+      s.life--;
+      s.loc.x = s.sz.x/2;
+    }
     
+    //right kelp
+    if (dist(k2loc.x,k2loc.y,s.loc.x,s.loc.y) < ksz.x/2+s.sz.x/2){
+      s.life--;
+      s.loc.x = s.sz.x/2;
+      
+    }
     
     
   }

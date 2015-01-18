@@ -1,3 +1,5 @@
+int level;
+
 PImage krustyKrab;
 Barrel barr;
 Barrel barr2;
@@ -8,8 +10,12 @@ Nastyburger nasty;
 
 
 void setup() {
+  //apply to all levels
   size(1500, 577);
-  krustyKrab = loadImage("krusty_krab_final.jpg");
+  imageMode(CENTER);
+  textAlign(CENTER);
+  
+    krustyKrab = loadImage("krusty_krab_final.jpg");
   //  pat = new Patrick ();
   sponge = new Spongebob ();
 
@@ -18,7 +24,8 @@ void setup() {
   barr3 = new Barrel(1200);
 
   nasty= new Nastyburger(width/2+100);
-  imageMode(CENTER);
+  }
+
 }
 
 void draw() {
@@ -31,8 +38,17 @@ void draw() {
     sponge.jump();
   }
 
+  sponge.textDisplay();
+
     sponge.move();
     sponge.display();
+    
+    barr.display();
+    barr2.display();
+    barr3.display();
+    barr.deathByKelp(sponge);
+    barr2.deathByKelp(sponge);
+    barr3.deathByKelp(sponge);
 
 
     sponge.landOnBarrel(barr3);
@@ -41,14 +57,10 @@ void draw() {
     sponge.landOnBarrel(barr);
     sponge.touchBarrel(barr);
 
+//for some reason, only this last function jumps on barrel
     sponge.landOnBarrel(barr2);
     sponge.touchBarrel(barr2);
 
-
-
-    barr.display();
-    barr2.display();
-    barr3.display();
 
     //display nasty patty class image 
     nasty.display();
@@ -56,6 +68,8 @@ void draw() {
     nasty.move();
 
     nasty.bounceOffBarrels(barr, barr3);
+    
+    nasty.hurtSponge(sponge);
 
     //  println(nasty.loc.x);   <-- for testing nasty
 
