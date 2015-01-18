@@ -6,7 +6,7 @@ class Spongebob {
   boolean isjumping;
   boolean onBarrel;
   float ground;
-  
+
   //life
   int life;
 
@@ -14,17 +14,16 @@ class Spongebob {
 
     ground=height;
     spongebob= loadImage("basic spongebob edit.png");
-    sz= new PVector(spongebob.width, spongebob.height);
+    sz= new PVector(2*spongebob.width/3, 2*spongebob.height/3);   //<--- make spongebob 2/3 the image size
     vel= new PVector(0, 0);
-    loc= new PVector(width/4, ground-sz.y/2);
+    loc= new PVector(sz.x/2, ground-sz.y/2);
     acc= new PVector(0, 0);
     jumpspeed=15;
     isjumping=false;
     onBarrel = false;
   }
   void display() {
-    image(spongebob, loc.x, loc.y);
-    //  image(spongebob, loc.x, loc.y, sz.x, sz.y);
+    image(spongebob, loc.x, loc.y, sz.x,sz.y);
   }
   void move() {
     vel.add(acc);
@@ -57,35 +56,13 @@ class Spongebob {
       //      if(keyCode==RIGHT){
       //       loc.x+=1; 
       //      }
-      isjumping=true;
-    }
+    isjumping=true;
+  }
   }
 
   void landOnBarrel(Barrel b) {
     // land on barrel after jumping
-    
-    //attemping to fix code when spongebob hits bottom of barrel  - does not work
-/*    if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 < b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel   // sz.x/4 to try to make more realistic
-      if (loc.y +sz.y/2>b.loc.y-b.sz.y/2) {
-        if (loc.y - sz.y/2 < b.loc.y + b.sz.y/2){
-        vel.y*= -1;
-        } else{
-        loc.y=b.loc.y-b.sz.y/2-sz.y/2;
-        vel.y=0;
-        acc.y=0;
-        isjumping=false;
-        println("landOnBarrel");
-        onBarrel = true;
-        }
-      }
-      } else if (onBarrel && !(loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 < b.loc.x + b.sz.x/2)) {
-        isjumping = true; 
-        acc.y = .2;
-        onBarrel = false;
-        //later: fix spongebob not jumping when right next to barrel
-      }
-      
-      */
+
     if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel   // sz.x/4 to try to make more realistic
       if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
         loc.y=b.loc.y-b.sz.y/2-sz.y/2;
@@ -101,23 +78,22 @@ class Spongebob {
       onBarrel = false;
       //later: fix spongebob not jumping when right next to barrel
     }
-    
   }
 
-    void touchBarrel( Barrel b) {  
-      //sides
-      if (abs(loc.x - b.loc.x) <= sz.x/2 + b.sz.x/2) {
-        if (loc.y +  sz.y/2 > b.loc.y-b.sz.y/2 && loc.y - sz.y/2 < b.loc.y+b.sz.y/2) {
-          /* if (loc.y + sz.y/2 > b.loc.y - b.sz.y/2){
-           loc.x+=0;  */
-          if (keyCode == RIGHT) {
-            loc.x = b.loc.x -b.sz.x/2-sz.x/2;
-          }
-          if (keyCode == LEFT) {
-            loc.x = b.loc.x +b.sz.x/2+sz.x/2;
-          }
+  void touchBarrel( Barrel b) {  
+    //sides
+    if (abs(loc.x - b.loc.x) <= sz.x/2 + b.sz.x/2) {
+      if (loc.y +  sz.y/2 > b.loc.y-b.sz.y/2 && loc.y - sz.y/2 < b.loc.y+b.sz.y/2) {
+        /* if (loc.y + sz.y/2 > b.loc.y - b.sz.y/2){
+         loc.x+=0;  */
+        if (keyCode == RIGHT) {
+          loc.x = b.loc.x -b.sz.x/2-sz.x/2;
+        }
+        if (keyCode == LEFT) {
+          loc.x = b.loc.x +b.sz.x/2+sz.x/2;
         }
       }
     }
   }
+}
 
