@@ -38,11 +38,11 @@ class Nastyburger {
 
   void bounceOffBarrels(Barrel a, Barrel b) {
 
-    if (loc.x-sz.x/2 < a.loc.x + a.sz.x/2) {       // b = barrel on left side
+    if (loc.x-sz.x/2 < a.loc.x + a.totalW/2) {       // b = barrel on left side
       vel.x*=-1;
     }
 
-    if (loc.x+sz.x/2> b.loc.x - b.sz.x/2) {    //b = barrel on right side
+    if (loc.x+sz.x/2> b.loc.x - b.totalW/2) {    //b = barrel on right side
       vel.x*=-1;
     }
   }

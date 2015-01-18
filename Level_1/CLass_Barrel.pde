@@ -8,6 +8,8 @@ class Barrel {
 
   PImage kelp, kelp2;
   PVector ksz, kloc, k2loc;
+  
+  float totalW;
 
 
   Barrel(float x) {
@@ -17,22 +19,27 @@ class Barrel {
     loc = new PVector (locx, height-sz.y/2);
 
     kelp = loadImage("kelp.png");
-    ksz = new PVector (kelp.width, kelp.height);  //<--- for both kelps
+    ksz = new PVector (kelp.width/4, kelp.height/4);  //<--- for both kelps; make image four times smaller
     kelp2 = loadImage("kelp.png");
+    kloc = new PVector (loc.x - sz.x/2 - ksz.x/2, loc.y+8);
+    k2loc = new PVector (loc.x + sz.x/2 + ksz.x/2, loc.y+8);
     
-    //why is location so off? Fix later
-    kloc = new PVector (loc.x - sz.x/2 - ksz.x/2, loc.y);
-    k2loc = new PVector (loc.x + sz.x/2 + ksz.x/2, loc.y);
+    //Width of the barrel including the two kelps
+    totalW = sz.x + 2*ksz.x;
+    
   }
 
   void display() {
     image(barrelpic, loc.x, loc.y, sz.x, sz.y);
-    image(kelp, kloc.x,kloc.y,ksz.x/4,ksz.y/4);   //<--- make kelp four times smaller
-    image(kelp, k2loc.x,k2loc.y,ksz.x/4,ksz.y/4);
+    image(kelp, kloc.x,kloc.y,ksz.x,ksz.y);
+    image(kelp, k2loc.x,k2loc.y,ksz.x,ksz.y);
   }
 
-  void WithKelp() {
+  void deathByKelp(Spongebob s) {
     //kelp placed next to barrels to cover up glitch
+    //lose 1 life if spongebob touches kelp
+    
+    
   }
 }
 

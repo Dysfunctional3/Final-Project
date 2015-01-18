@@ -11,7 +11,7 @@ void setup() {
   krustyKrab = loadImage("krusty_krab_final.jpg");
   //  pat = new Patrick ();
   sponge = new Spongebob ();
-  barr = new Barrel(100);
+  barr = new Barrel(200);
   barr2 = new Barrel(1000);
   nasty= new Nastyburger(width/2);
   imageMode(CENTER);
@@ -42,7 +42,7 @@ void draw() {
   
   nasty.bounceOffBarrels(barr,barr2);
   
-  println(nasty.loc.x);
+//  println(nasty.loc.x);   <-- for testing nasty
 }
 
 
