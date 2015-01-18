@@ -1,3 +1,5 @@
+//Level 1 Barrel
+
 class Barrel {
 
   //declare
@@ -8,7 +10,7 @@ class Barrel {
 
   PImage kelp, kelp2;
   PVector ksz, kloc, k2loc;
-  
+
   float totalW;
 
 
@@ -23,36 +25,33 @@ class Barrel {
     kelp2 = loadImage("kelp.png");
     kloc = new PVector (loc.x - sz.x/2 - ksz.x/2, loc.y+8);
     k2loc = new PVector (loc.x + sz.x/2 + ksz.x/2, loc.y+8);
-    
+
     //Width of the barrel including the two kelps
     totalW = sz.x + 2*ksz.x;
-    
   }
 
   void display() {
     image(barrelpic, loc.x, loc.y, sz.x, sz.y);
-    image(kelp, kloc.x,kloc.y,ksz.x,ksz.y);
-    image(kelp, k2loc.x,k2loc.y,ksz.x,ksz.y);
+    image(kelp, kloc.x, kloc.y, ksz.x, ksz.y);
+    image(kelp, k2loc.x, k2loc.y, ksz.x, ksz.y);
   }
 
   void deathByKelp(Spongebob s) {
     //kelp placed next to barrels to cover up glitch
+    
     //lose 1 life if spongebob touches kelp
-    
+
     //left kelp
-    if (dist(kloc.x,kloc.y,s.loc.x,s.loc.y) < ksz.x/2+s.sz.x/2){
+    if (dist(kloc.x, kloc.y, s.loc.x, s.loc.y) < ksz.x/2+s.sz.x/2) {
       s.life--;
       s.loc.x = s.sz.x/2;
     }
-    
+
     //right kelp
-    if (dist(k2loc.x,k2loc.y,s.loc.x,s.loc.y) < ksz.x/2+s.sz.x/2){
+    if (dist(k2loc.x, k2loc.y, s.loc.x, s.loc.y) < ksz.x/2+s.sz.x/2) {
       s.life--;
       s.loc.x = s.sz.x/2;
-      
     }
-    
-    
   }
 }
 

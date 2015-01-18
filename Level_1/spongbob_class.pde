@@ -1,3 +1,5 @@
+//Player 1
+
 class Spongebob {
   PVector sz;
   PVector loc, acc, vel;
@@ -105,8 +107,10 @@ class Spongebob {
     }
   }
   
+  // Is Spongebob dead?
   boolean isDead(){
     if (life < 0){
+      life = 0;
       return true;
     } else{
       return false;

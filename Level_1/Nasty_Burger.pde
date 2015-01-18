@@ -1,10 +1,14 @@
+//Level 1 Nasty Burger
+
 //declare nasty burger class
+
 class Nastyburger {
   //declare variables
   PVector sz;
   PVector loc, vel, acc;
   PImage nastyburger;
   float locx;
+  
   //nastyburger constructor
   Nastyburger(float x) {
     //initialize variables
@@ -48,7 +52,7 @@ class Nastyburger {
   }
 
     //when touching character, kill him
-    void hurtSponge(Spongebob s) {
+   void hurtSponge(Spongebob s) {
       if (dist(loc.x,loc.y,s.loc.x,s.loc.y) < sz.x/2+s.sz.x/2){
         s.life--;
         s.loc.x = s.sz.x/2;   // send spongebob back to beginning
