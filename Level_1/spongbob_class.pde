@@ -11,16 +11,19 @@ class Spongebob {
   int life;
 
   Spongebob() {
-
     ground=height;
     spongebob= loadImage("basic spongebob edit.png");
     sz= new PVector(2*spongebob.width/3, 2*spongebob.height/3);   //<--- make spongebob 2/3 the image size
     vel= new PVector(0, 0);
     loc= new PVector(sz.x/2, ground-sz.y/2);
     acc= new PVector(0, 0);
-    jumpspeed=15;
+//    jumpspeed=15;
     isjumping=false;
     onBarrel = false;
+    
+    //start with 10 lives
+    life = 10;
+
   }
   void display() {
     image(spongebob, loc.x, loc.y, sz.x,sz.y);
@@ -51,7 +54,7 @@ class Spongebob {
   void jump() {
     //if it's not jumping and mouse pressed, jump
     if (!isjumping) {
-      vel.y=-8;
+      vel.y=-6;
       acc.y=.15;
       //      if(keyCode==RIGHT){
       //       loc.x+=1; 
@@ -63,7 +66,7 @@ class Spongebob {
   void landOnBarrel(Barrel b) {
     // land on barrel after jumping
 
-    if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel   // sz.x/4 to try to make more realistic
+  if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel
       if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
         loc.y=b.loc.y-b.sz.y/2-sz.y/2;
         vel.y=0;
@@ -95,5 +98,17 @@ class Spongebob {
       }
     }
   }
-}
+  
+  boolean isDead(){
+    if (life < 0){
+      return true;
+    } else{
+      return false;
+    }
+  }
+  }
+  
+  
+  
+
 

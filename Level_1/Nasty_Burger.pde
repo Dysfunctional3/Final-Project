@@ -47,7 +47,7 @@ class Nastyburger {
     }
   }
 
-    //when touching character, hurt him
+    //when touching character, kill him
     void hurtSponge(Spongebob s) {
       
       

@@ -40,6 +40,8 @@ class Barrel {
     //lose 1 life if spongebob touches kelp
     
     
+    
+    
   }
 }
 
