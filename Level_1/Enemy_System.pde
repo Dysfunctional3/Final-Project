@@ -7,8 +7,10 @@ class EnemySystem {
 
   EnemySystem() {
     buckets = new ArrayList<Bucket>();
+    
+    // make less buckets
     delay=0;
-    finalDelay=60;
+    finalDelay=30;
   }
 
   void addBucket() {

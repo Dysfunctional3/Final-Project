@@ -42,7 +42,6 @@ void setup() {
   //initialize level 2
   chumBucket = loadImage("chum_bucket.jpg");
   en = new EnemySystem();
-  
 }
 
 void draw() {
@@ -51,25 +50,25 @@ void draw() {
   if (level ==0) {
     //start screen picture
     background(0);   //<--- replace with image
-    
+
     textSize(50);
     text("Click to start", width/2, height/2);
-    if (!pressedTwice){
-    if (mousePressed) {
-      level = .5;
-      pressedTwice = true;
-    }
+    if (!pressedTwice) {
+      if (mousePressed) {
+        level = .5;
+        pressedTwice = true;
+      }
     }
   }
-  
+
   //instruction page
-  if (level == .5){
+  if (level == .5) {
     background(100);
-    
+
     textSize(50);
-    text("Click again",width/2,height/2);
-    if (pressedTwice){
-      if (mousePressed){
+    text("Click again", width/2, height/2);
+    if (pressedTwice) {
+      if (mousePressed) {
         level = 1;
       }
     }
@@ -102,21 +101,21 @@ void draw() {
     barr3.deathByKelp(sponge);
 
     //Spongebob's interaction (NEED TOP FIX JUMPING ON BARREL)
- //   if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr3.sz)){
+    //   if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr3.sz)){
     sponge.landOnBarrel(barr3);
     sponge.touchBarrel(barr3);
- //   }
-    
- //   if (sponge.loc.dist(barr.loc) <= sponge.sz.dist(barr.sz)){
+    //   }
+
+    //   if (sponge.loc.dist(barr.loc) <= sponge.sz.dist(barr.sz)){
     sponge.landOnBarrel(barr);
     sponge.touchBarrel(barr);
- //   }
+    //   }
 
     //for some reason, only this last function jumps on barrel
-  //  if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr2.sz)){
+    //  if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr2.sz)){
     sponge.landOnBarrel(barr2);
     sponge.touchBarrel(barr2);
-  //  }
+    //  }
 
 
     //Nasties in Level 1
@@ -138,13 +137,13 @@ void draw() {
 
 
   //Level 1.5 - Transition btwn Level 1 and 2
-  
+
   if (level == 1.5) {
     //transition picture
-        background(0);   //<--- replace with transition
+    background(0);   //<--- replace with transition
 
-   //click to move onto Level 2 (Boss)
-   textSize(50);
+    //click to move onto Level 2 (Boss)
+    textSize(50);
     text("Click to continue", width/2, height/2);    //<--- change location later
     if (mousePressed) {
       level = 2;
@@ -159,34 +158,48 @@ void draw() {
     sponge.display();
     sponge.textDisplay();
     sponge.move();
-    
+
     //LATER: why is spongebob not showing up in Level 2?
-   // sponge.display();
-    
+    // sponge.display();
+
     //I'll fix this later. I need at least three hours of sleep.
     en.run();
     en.addBucket();
-    
-    
+
+    if (sponge.loc.x > width) {
+      //go to end screen
+      level = 2.5;
+    }
+
+  if (level == 2.5){
+    background(0);
+    //you win! background
+    textSize(50);
+    text("Click to start again", width/2, height/2);    //<--- change location later
+    if (mousePressed) {
+      sponge.life = 10;
+      level = 0;
+    }
   }
 
 
-  //if Spongebob dies
-  if (sponge.isDead()) {
-    //add ending screen by changing background
+    //if Spongebob dies
+    if (sponge.isDead()) {
+      //add ending screen by changing background
 
-      //background(
+        //background(
 
-    //text size subject to change
-    textSize(50);   
-    text("Press 'r' to try again", width/2, height/2);
+      //text size subject to change
+      textSize(50);   
+      text("Press 'r' to try again", width/2, height/2);
 
-    if (keyPressed) { 
-      if (key == 'r') {      
-        //restarts back to level 1
-        level = 1;
-        //resets life
-        sponge.life = 10;
+      if (keyPressed) { 
+        if (key == 'r') {      
+          //restarts back to level 1
+          level = 1;
+          //resets life
+          sponge.life = 10;
+        }
       }
     }
   }
@@ -195,9 +208,9 @@ void draw() {
 
 
 
-void keyPressed() {
-  if (keyCode==' ') {
-    sponge.jump();
+  void keyPressed() {
+    if (keyCode==' ') {
+      sponge.jump();
+    }
   }
-}
 

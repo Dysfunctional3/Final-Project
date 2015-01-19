@@ -111,7 +111,7 @@ class Spongebob {
   
   // Is Spongebob dead?
   boolean isDead(){
-    if (life < 0){
+    if (life < 1){
       return true;
     } else{
       return false;

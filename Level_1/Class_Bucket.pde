@@ -9,12 +9,12 @@ class Bucket {
 
   Bucket() {
     //INITIALIZE VARIABLES
-    loc = new PVector(width/2, height/2);    //<--- LATER: spray from giant bucket or cannon or something
-    vel = new PVector(random(-4, 1), random(-4, 2));
+    loc = new PVector(width/2, 100);    //<--- LATER: spray from giant bucket or cannon or something
+    vel = new PVector(random(-6,6), random(-4, -1));
     acc = new PVector(0, .15);
     //Bucket image
     bucketpic = loadImage("nasty_patty.png");   //<--- LATER: get chum bucket bucket picture
-    sz = new PVector(bucketpic.width, bucketpic.height);
+    sz = new PVector(bucketpic.width/2, bucketpic.height/2);
 
     //Age of bucket
     bLife = 255;
