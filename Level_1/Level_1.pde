@@ -58,7 +58,7 @@ void setup() {
 
   //barrels
   barr = new Barrel(200);
-  barr2 = new Barrel(600);
+  barr2 = new Barrel(700);
   barr3 = new Barrel(1200);
 
   nasty= new Nastyburger(width/2+100);
@@ -100,8 +100,14 @@ void draw() {
     //if mouse not clicked yet
     if (!pressedOnce) {
       //start screen picture
-      background(startScreen);   //<--- replace with image
+      background(startScreen);
 
+      //make rectangle go under text for easier reading
+      fill(255,75);
+      noStroke();
+      rect(520,451,460,31);
+      //println(mouseX,mouseY);  // <--- used to find coordinates of rectangle above
+      
       //show text
       textSize(30);
       fill(0);
@@ -118,8 +124,17 @@ void draw() {
       instruNasty.display();
       instruKelp.display();
 
+      //make rectangle go under text for easier reading
+      fill(255,75);
+      noStroke();
+      rect(610,546,283,25);
+     // println(mouseX,mouseY);   //<--- used to find coordinates of rectangle above
+      
+      
       //show text
       textSize(25);
+      fill(0);
+      
       text("Click anywhere to play", width/2, height-10);
 
       //if clicked the second time, go to level 1
@@ -150,7 +165,7 @@ void draw() {
     barr2.deathByKelp(sponge);
     barr3.deathByKelp(sponge);
 
-    //Spongebob's interaction (NEED TOP FIX JUMPING ON BARREL)
+    //Spongebob's interaction with barrels
       if (sponge.loc.dist(barr3.loc) <= 200){
     sponge.landOnBarrel(barr3);
     sponge.touchBarrel(barr3);
@@ -162,7 +177,6 @@ void draw() {
     sponge.touchBarrel(barr);
       }
 
-    //for some reason, only this last function jumps on barrel
       if (sponge.loc.dist(barr2.loc) <= 200){
     sponge.landOnBarrel(barr2);
     sponge.touchBarrel(barr2);
@@ -232,12 +246,14 @@ void draw() {
     }
   }
 
+
   //if Spongebob wins
   if (level == 2.5) {
     background(winScreen);
     //you win! background
     textSize(50);
-    text("Click anywhere to play again", width/2, height/2);    //<--- change location later
+    fill(0);
+    text("Click anywhere to play again", width/2, height-150);    //<--- change location later
     if (mousePressed) {
       sponge.life = 10;
       sponge.loc.set(sponge.sz.x/2, height-sponge.sz.y/2);
@@ -254,7 +270,8 @@ void draw() {
 
     //text size subject to change
     textSize(50);   
-    text("Press 'r' to try again", width/2, height/2);
+    fill(255);
+    text("Press 'r' to try again", width/2, height-200);
 
     if (keyPressed) { 
       if (key == 'r') {    
