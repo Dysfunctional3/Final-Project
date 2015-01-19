@@ -36,6 +36,8 @@ class Spongebob {
   void display() {
     image(spongebob, loc.x, loc.y, sz.x,sz.y);
   }
+  
+  
   void move() {
     vel.add(acc);
     loc.add(vel);
@@ -110,7 +112,6 @@ class Spongebob {
   // Is Spongebob dead?
   boolean isDead(){
     if (life < 0){
-      life = 0;
       return true;
     } else{
       return false;

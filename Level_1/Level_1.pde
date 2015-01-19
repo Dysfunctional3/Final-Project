@@ -14,6 +14,9 @@ Nastyburger nasty;
 PImage chumBucket;
 EnemySystem en;
 
+//to get instruction page to work
+//fixxxxxxx
+boolean pressedTwice = false;
 
 
 void setup() {
@@ -47,12 +50,28 @@ void draw() {
   //Level 0 -Start Screen
   if (level ==0) {
     //start screen picture
-    //background(----);
+    background(0);   //<--- replace with image
     
     textSize(50);
-    text("Click to begin", width/2, height/2);
+    text("Click to start", width/2, height/2);
+    if (!pressedTwice){
     if (mousePressed) {
-      level = 1;
+      level = .5;
+      pressedTwice = true;
+    }
+    }
+  }
+  
+  //instruction page
+  if (level == .5){
+    background(100);
+    
+    textSize(50);
+    text("Click again",width/2,height/2);
+    if (pressedTwice){
+      if (mousePressed){
+        level = 1;
+      }
     }
   }
 
@@ -83,15 +102,21 @@ void draw() {
     barr3.deathByKelp(sponge);
 
     //Spongebob's interaction (NEED TOP FIX JUMPING ON BARREL)
+ //   if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr3.sz)){
     sponge.landOnBarrel(barr3);
     sponge.touchBarrel(barr3);
-
+ //   }
+    
+ //   if (sponge.loc.dist(barr.loc) <= sponge.sz.dist(barr.sz)){
     sponge.landOnBarrel(barr);
     sponge.touchBarrel(barr);
+ //   }
 
     //for some reason, only this last function jumps on barrel
+  //  if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr2.sz)){
     sponge.landOnBarrel(barr2);
     sponge.touchBarrel(barr2);
+  //  }
 
 
     //Nasties in Level 1
@@ -105,6 +130,7 @@ void draw() {
     //END OF LEVEL 1
     //if Spongebob reaches the end of the screen...
     if (sponge.loc.x > width) {
+      sponge.loc.x = sponge.sz.x/2;
       //change to transition slide
       level = 1.5;
     }
@@ -115,7 +141,7 @@ void draw() {
   
   if (level == 1.5) {
     //transition picture
-       // background(----)
+        background(0);   //<--- replace with transition
 
    //click to move onto Level 2 (Boss)
    textSize(50);
@@ -129,13 +155,13 @@ void draw() {
   //Level 2 - Chum Bucket (Boss Level)
   if (level == 2) {
     background(chumBucket);
-
     //spongebob the same in all levels
+    sponge.display();
     sponge.textDisplay();
     sponge.move();
     
     //LATER: why is spongebob not showing up in Level 2?
-    sponge.display();
+   // sponge.display();
     
     //I'll fix this later. I need at least three hours of sleep.
     en.run();
