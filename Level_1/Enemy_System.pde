@@ -10,7 +10,7 @@ class EnemySystem {
     
     // make less buckets
     delay=0;
-    finalDelay=30;
+    finalDelay=10;
   }
 
   void addBucket() {

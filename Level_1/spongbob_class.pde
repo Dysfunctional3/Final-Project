@@ -18,35 +18,39 @@ class Spongebob {
     vel= new PVector(0, 0);
     loc= new PVector(sz.x/2, ground-sz.y/2);
     acc= new PVector(0, 0);
-//    jumpspeed=15;
+    //    jumpspeed=15;
     isjumping=false;
     onBarrel = false;
-    
+
     //start with 10 lives
     life = 10;
-
   }
-  
-  void textDisplay(){
+
+  void textDisplay() {
     textSize(25);
+
+    //display number of lives
     text("Lives: " + life, 100, 30);
   }
-  
-  
+
+
   void display() {
-    image(spongebob, loc.x, loc.y, sz.x,sz.y);
+    image(spongebob, loc.x, loc.y, sz.x, sz.y);
   }
-  
-  
+
+
   void move() {
     vel.add(acc);
     loc.add(vel);
+    //if it's in the process of jumping...
     if (isjumping && loc.y +sz.y/2>=height) {   // stops jumping when it hits the ground
       loc.y=height-sz.y/2;
       vel.y=0;
       acc.y=0;
       isjumping=false;
     }
+
+    //if right or left arrow pressed, move
     if (keyPressed) {
       if (keyCode==RIGHT) {
         loc.x+=3;
@@ -60,6 +64,11 @@ class Spongebob {
         loc.x+=0;
       }
     }
+
+    //don't let spongebob move through the left wall
+    if (loc.x - sz.x/2 <0) {
+      loc.x = sz.x/2;
+    }
   }
   void jump() {
     //if it's not jumping and mouse pressed, jump
@@ -69,14 +78,14 @@ class Spongebob {
       //      if(keyCode==RIGHT){
       //       loc.x+=1; 
       //      }
-    isjumping=true;
-  }
+      isjumping=true;
+    }
   }
 
   void landOnBarrel(Barrel b) {
     // land on barrel after jumping
 
-  if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel
+    if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel
       if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
         loc.y=b.loc.y-b.sz.y/2-sz.y/2;
         vel.y=0;
@@ -108,18 +117,17 @@ class Spongebob {
       }
     }
   }
-  
+
   // Is Spongebob dead?
-  boolean isDead(){
-    if (life < 1){
+  boolean isDead() {
+    if (life < 1) {
       return true;
-    } else{
+    } else {
       return false;
     }
   }
-  }
-  
-  
-  
+}
+
+
 
 

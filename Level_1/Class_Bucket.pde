@@ -9,10 +9,11 @@ class Bucket {
 
   Bucket() {
     //INITIALIZE VARIABLES
-    loc = new PVector(width/2, 100);    //<--- LATER: spray from giant bucket or cannon or something
-    vel = new PVector(random(-6,6), random(-4, -1));
+    loc = new PVector(width/2, 0);
+    vel = new PVector(random(-10,10), random(-3,3));
     acc = new PVector(0, .15);
     //Bucket image
+    
     bucketpic = loadImage("nasty_patty.png");   //<--- LATER: get chum bucket bucket picture
     sz = new PVector(bucketpic.width/2, bucketpic.height/2);
 
@@ -40,7 +41,7 @@ class Bucket {
     if (loc.x + sz.x/2 > width || loc.x - sz.x/2 < 0) {
       bLife-=decay;
     }
-    if (loc.y - sz.y/2 < 0) {
+    if (loc.y - sz.y/2 > height) {
       bLife-=decay;
     }
   }

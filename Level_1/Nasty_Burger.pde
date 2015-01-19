@@ -8,7 +8,7 @@ class Nastyburger {
   PVector loc, vel, acc;
   PImage nastyburger;
   float locx;
-  
+
   //nastyburger constructor
   Nastyburger(float x) {
     //initialize variables
@@ -30,14 +30,13 @@ class Nastyburger {
 
 
     //bounce off right screen
-     if (loc.x+sz.x/4>width) {   //<--- should be sz.x/2; CROP IMAGES TUESDAY
-     vel.x*=-1;
-     }
-     //bounce off left screen
-     if (loc.x-sz.x/5<0) {       // same problem as above
-     vel.x*=-1;
-     }
-
+    if (loc.x+sz.x/4>width) {   //<--- should be sz.x/2; CROP IMAGES TUESDAY
+      vel.x*=-1;
+    }
+    //bounce off left screen
+    if (loc.x-sz.x/5<0) {       // same problem as above
+      vel.x*=-1;
+    }
   }
 
   void bounceOffBarrels(Barrel a, Barrel b) {
@@ -51,13 +50,12 @@ class Nastyburger {
     }
   }
 
-    //when touching character, kill him
-   void hurtSponge(Spongebob s) {
-      if (dist(loc.x,loc.y,s.loc.x,s.loc.y) < sz.x/2+s.sz.x/2){
-        s.life--;
-        s.loc.x = s.sz.x/2;   // send spongebob back to beginning
-      }
-      
+  //when touching character, kill him
+  void hurtSponge(Spongebob s) {
+    if (dist(loc.x, loc.y, s.loc.x, s.loc.y) < sz.x/2+s.sz.x/2) {
+      s.life--;
+      s.loc.x = s.sz.x/2;   // send spongebob back to beginning
     }
   }
+}
 
