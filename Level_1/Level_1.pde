@@ -62,6 +62,7 @@ void draw() {
   }
 
   //instruction page
+  //doesn't work
   if (level == .5) {
     background(100);
 
