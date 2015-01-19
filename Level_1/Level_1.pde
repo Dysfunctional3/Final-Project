@@ -1,6 +1,15 @@
 
 float level;
 
+//start screen
+PImage startScreen;
+
+//instruction screen
+PImage instruScreen;
+
+//to get instruction page to work
+boolean pressedOnce = false;
+
 //declare level 1
 PImage krustyKrab;
 Barrel barr;
@@ -10,14 +19,19 @@ Barrel barr3;
 Spongebob sponge;
 Nastyburger nasty;
 
+//transition screen
+PImage transScreen;
+
+
 //declare level 2/boss level
 PImage chumBucket;
 EnemySystem en;
 
-//to get instruction page to work
-//fixxxxxxx
-boolean pressedTwice = false;
+//winning end screen
+PImage winScreen;
 
+//losing end screen
+PImage loseScreen;
 
 void setup() {
   //apply to all levels
@@ -25,14 +39,14 @@ void setup() {
   imageMode(CENTER);
   textAlign(CENTER);
 
+  //start with level 0 (start screen)
   level = 0;
 
   //initialize level 1
-
   krustyKrab = loadImage("krusty_krab_final.jpg");
-  //  pat = new Patrick ();
   sponge = new Spongebob ();
 
+  //barrels
   barr = new Barrel(200);
   barr2 = new Barrel(600);
   barr3 = new Barrel(1200);
@@ -42,33 +56,50 @@ void setup() {
   //initialize level 2
   chumBucket = loadImage("chum_bucket.jpg");
   en = new EnemySystem();
+
+
+  //initialize screens
+  startScreen = loadImage("title screen.png");
+  instruScreen = loadImage("instruction screen.png");
+  transScreen = loadImage("transition screen.png");
+  winScreen = loadImage("winner screen.png");
+  loseScreen = loadImage("losing screen.png");
+}
+
+//to make it flash to instruction screen after clicking
+void mouseClicked() {
+  if (!pressedOnce) {
+    pressedOnce = true;
+  } else if (pressedOnce) {
+    pressedOnce = false;
+  }
 }
 
 void draw() {
 
-  //Level 0 -Start Screen
+  //Level 0 -Start Screen and instruction screen
   if (level ==0) {
-    //start screen picture
-    background(0);   //<--- replace with image
 
-    textSize(50);
-    text("Click to start", width/2, height/2);
-    if (!pressedTwice) {
-      if (mousePressed) {
-        level = .5;
-        pressedTwice = true;
-      }
+    //if mouse not clicked yet
+    if (!pressedOnce) {
+      //start screen picture
+      background(startScreen);   //<--- replace with image
+
+      //show text
+      textSize(50);
+      text("Click for instructions", width/2, height/2);
     }
-  }
 
-  //instruction page
-  //doesn't work
-  if (level == .5) {
-    background(100);
+    //if already clicked once, show instruction screen
+    if (pressedOnce) {
+      //instruction page picture
+      background(instruScreen);
 
-    textSize(50);
-    text("Click again", width/2, height/2);
-    if (pressedTwice) {
+      //show text
+      textSize(50);
+      text("Click to play", width/2, height/2);
+
+      //if clicked the second time, go to level 1
       if (mousePressed) {
         level = 1;
       }
@@ -79,14 +110,6 @@ void draw() {
   //Level 1 - Krusty Krab
   if (level == 1) {
     background(krustyKrab);
-
-    //patrick if only we have time to make another character
-    //  pat.display();
-    //  pat.move();
-
-    /*    if (keyCode==' ') {
-     sponge.jump();
-     }  */
 
     //applies to all levels, but need to be written after background, so copy and paste
     sponge.textDisplay();
@@ -102,10 +125,10 @@ void draw() {
     barr3.deathByKelp(sponge);
 
     //Spongebob's interaction (NEED TOP FIX JUMPING ON BARREL)
-    //   if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr3.sz)){
+    //  if (sponge.loc.dist(barr3.loc) <= sponge.sz.dist(barr3.sz)){
     sponge.landOnBarrel(barr3);
     sponge.touchBarrel(barr3);
-    //   }
+    //    }
 
     //   if (sponge.loc.dist(barr.loc) <= sponge.sz.dist(barr.sz)){
     sponge.landOnBarrel(barr);
@@ -141,9 +164,9 @@ void draw() {
 
   if (level == 1.5) {
     //transition picture
-    background(0);   //<--- replace with transition
+    background(transScreen);   //<--- replace with transition
 
-    //click to move onto Level 2 (Boss)
+      //click to move onto Level 2 (Boss)
     textSize(50);
     text("Click to continue", width/2, height/2);    //<--- change location later
     if (mousePressed) {
@@ -172,23 +195,23 @@ void draw() {
       level = 2.5;
     }
 
-  if (level == 2.5){
-    background(0);
-    //you win! background
-    textSize(50);
-    text("Click to start again", width/2, height/2);    //<--- change location later
-    if (mousePressed) {
-      sponge.life = 10;
-      level = 0;
+    if (level == 2.5) {
+      background(winScreen);
+      //you win! background
+      textSize(50);
+      text("Click to start again", width/2, height/2);    //<--- change location later
+      if (mousePressed) {
+        sponge.life = 10;
+        level = 0;
+      }
     }
-  }
 
 
     //if Spongebob dies
     if (sponge.isDead()) {
       //add ending screen by changing background
 
-        //background(
+        background(loseScreen);
 
       //text size subject to change
       textSize(50);   
@@ -209,9 +232,9 @@ void draw() {
 
 
 
-  void keyPressed() {
-    if (keyCode==' ') {
-      sponge.jump();
-    }
+void keyPressed() {
+  if (keyCode==' ') {
+    sponge.jump();
   }
+}
 
