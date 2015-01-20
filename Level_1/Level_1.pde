@@ -278,7 +278,7 @@ void draw() {
     if (mousePressed) {
       sponge.life = 10;
       sponge.loc.set(sponge.sz.x/2, height-sponge.sz.y/2);
-      level = 0;
+      level = 1;
     }
   }
 
