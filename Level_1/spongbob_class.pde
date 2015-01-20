@@ -28,7 +28,7 @@ class Spongebob {
 
   void textDisplay() {
     textSize(25);
-    fill(255);
+    fill(0,0,255);
 
     //display number of lives
     text("Lives: " + life, 100, 30);

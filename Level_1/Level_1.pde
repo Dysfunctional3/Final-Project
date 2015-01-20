@@ -83,7 +83,7 @@ void setup() {
   instruNasty = new Nastyburger(width/2 - 150);
   instruKelp = new Kelp(width/2, height-100);
   instruHash = new Hash(width/2 +150);
-  
+
   //make instruction screen objects larger
   instruNasty.sz.mult(2);
   instruKelp.sz.mult(2);
@@ -111,11 +111,11 @@ void draw() {
       background(startScreen);
 
       //make rectangle go under text for easier reading
-      fill(255,75);
+      fill(255, 75);
       noStroke();
-      rect(520,451,460,31);
+      rect(520, 451, 460, 31);
       //println(mouseX,mouseY);  // <--- used to find coordinates of rectangle above
-      
+
       //show text
       textSize(30);
       fill(0);
@@ -135,16 +135,16 @@ void draw() {
       instruHash.display();
 
       //make rectangle go under text for easier reading
-      fill(255,75);
+      fill(255, 75);
       noStroke();
-      rect(610,546,283,25);
-     // println(mouseX,mouseY);   //<--- used to find coordinates of rectangle above
-      
-      
+      rect(610, 546, 283, 25);
+      // println(mouseX,mouseY);   //<--- used to find coordinates of rectangle above
+
+
       //show text
       textSize(25);
       fill(0);
-      
+
       text("Click anywhere to play", width/2, height-10);
 
       //if clicked the second time, go to level 1
@@ -158,7 +158,7 @@ void draw() {
   //Level 1 - Krusty Krab
   if (level == 1) {
     background(krustyKrab);
-
+    fill(0, 255, 0);
     //display "level 1"
     text("Level 1: The Krusty Krab", width/2, 30);
 
@@ -176,21 +176,21 @@ void draw() {
     barr3.deathByKelp(sponge);
 
     //Spongebob's interaction with barrels
-      if (sponge.loc.dist(barr3.loc) <= 200){
-    sponge.landOnBarrel(barr3);
-    sponge.touchBarrel(barr3);
-        }
+    if (sponge.loc.dist(barr3.loc) <= 200) {
+      sponge.landOnBarrel(barr3);
+      sponge.touchBarrel(barr3);
+    }
 
     //   if (sponge.loc.dist(barr.loc) <= sponge.sz.dist(barr.sz)){
-      if (sponge.loc.dist(barr.loc) <= 200){
-    sponge.landOnBarrel(barr);
-    sponge.touchBarrel(barr);
-      }
+    if (sponge.loc.dist(barr.loc) <= 200) {
+      sponge.landOnBarrel(barr);
+      sponge.touchBarrel(barr);
+    }
 
-      if (sponge.loc.dist(barr2.loc) <= 200){
-    sponge.landOnBarrel(barr2);
-    sponge.touchBarrel(barr2);
-      }
+    if (sponge.loc.dist(barr2.loc) <= 200) {
+      sponge.landOnBarrel(barr2);
+      sponge.touchBarrel(barr2);
+    }
 
 
     //Nasties in Level 1
@@ -198,14 +198,14 @@ void draw() {
     nasty.move();
     nasty.bounceOffBarrels(barr2, barr3);
     nasty.hurtSponge(sponge);
-    
+
     nasty2.display();
     nasty2.move();
     nasty2.bounceOffBarrels(barr2, barr3);
     nasty2.hurtSponge(sponge);
 
     //  println(nasty.loc.x);   <-- for testing nasty
-    
+
     //Hash Slinging Slasher
     hss.display();
     hss.move();
@@ -249,7 +249,7 @@ void draw() {
   //Level 2 - Chum Bucket (Boss Level)
   if (level == 2) {
     background(chumBucket);
-
+    fill(255, 0, 0);
     //diplay "level 2"
     text("Level 2: The Chum Bucket", width/2, 30);
 
@@ -278,7 +278,7 @@ void draw() {
     if (mousePressed) {
       sponge.life = 10;
       sponge.loc.set(sponge.sz.x/2, height-sponge.sz.y/2);
-      level = 1;
+      level = 0;
     }
   }
 
