@@ -5,17 +5,30 @@
 class KPatty {
   //declare variables
   PVector sz;
-  PVector loc;
+  PVector loc,vel,acc;
   PImage kPatty;
   float locx;
+  int kLife;
+  int decay;
 
-  KPatty(float x) {
+  KPatty() {
     //initialize variables
-    locx = x;
+    //    locx = x;
     kPatty= loadImage("patty.png");
     sz= new PVector(kPatty.width/10, kPatty.height/10);
-    loc= new PVector(locx, height-sz.y/2);
+    loc = new PVector(width/2, height-sz.x/2);
+    vel = new PVector(random(-4, 4), random(-5, -15));
+    acc = new PVector(0, .15);
+
+    kLife = 255;
+    decay = 255;
   }
+
+  void move() { 
+    vel.add(acc);
+    loc.add(vel);
+  }
+
 
   //complete all actions
   void run(Spongebob s) {
@@ -37,5 +50,16 @@ class KPatty {
     //    }
     //  }
   }
+
+  boolean isGone() { 
+
+    //RETURN TRUE IF PATTY GONE, FALSE IF NOT
+    if (kLife <=0) {
+      return true;
+    } else {
+      return false;
+    }
   }
+}
+
 

@@ -20,7 +20,7 @@ class Hash {
     acc= new PVector(0, 0);
     hashslinger= loadImage("hash_slinging_slasher.png");
     sz = new PVector(hashslinger.width/4, hashslinger.height/4);
-    loc= new PVector(locx, height-sz.y/2);
+    loc= new PVector(locx, height+sz.y/2);
     
     hashDelay = 0;
     hashFinalDelay = 120;
@@ -46,7 +46,7 @@ class Hash {
     
     //if it's not jumping
     if (!hashJumping && hashDelay == hashFinalDelay) {
-      vel.y=-6;
+      vel.y=-8;
       acc.y=.15;
       hashDelay=0;
       hashJumping=true;

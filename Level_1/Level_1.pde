@@ -22,6 +22,7 @@ Spongebob sponge;
 Nastyburger nasty;
 Nastyburger nasty2;
 Hash hss;
+KPSystem kpSys;
 
 //transition screen
 PImage transScreen;
@@ -56,16 +57,17 @@ void setup() {
 
   //barrels
   barr = new Barrel(200);
-  barr2 = new Barrel(750);
+  barr2 = new Barrel(650);
   barr3 = new Barrel(1300);
 
   //obstacles
   nasty= new Nastyburger(width/2+200);
   nasty2= new Nastyburger(width-400);
-  hss = new Hash(width/4+100);
+  hss = new Hash(width/4+50);
 
   //Transition Krabby Patties
-  kp = new KPatty(width/2);
+//  kp = new KPatty(width/2);
+  kpSys = new KPSystem();
 
   //initialize level 2
   chumBucket = loadImage("chum_bucket.jpg");
@@ -227,9 +229,9 @@ void draw() {
     //transition picture
     background(transScreen);   //<--- replace with transition
 
-      //collect krabby patties
-    ////////////////////////////////DOESN'T SHOW UP
-    kp.run(sponge);
+    kpSys.run();
+    kpSys.addKP();
+  //  kp.run(sponge);
 
     //spongebob
     sponge.display();
