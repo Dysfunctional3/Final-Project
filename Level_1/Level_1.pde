@@ -8,6 +8,7 @@ PImage startScreen;
 PImage instruScreen;
 Nastyburger instruNasty;
 Kelp instruKelp;
+Hash instruHash;
 
 //to get instruction page to work
 boolean pressedOnce = false;
@@ -19,6 +20,7 @@ Barrel barr2;
 Barrel barr3;
 Spongebob sponge;
 Nastyburger nasty;
+Hash hss;
 
 //transition screen
 PImage transScreen;
@@ -44,11 +46,6 @@ void setup() {
   imageMode(CENTER);
   textAlign(CENTER);
 
-  //making a krabby patty
-  /////////////////////////////////////DOESN'T WORK! FIX LATER//////////////////////////
-  kp = new KPatty(width/2);
-  //////////////////////////////////////////////////////////////////////////////////////
-
   //start with level 0 (start screen)
   level = 0;
 
@@ -61,7 +58,12 @@ void setup() {
   barr2 = new Barrel(700);
   barr3 = new Barrel(1200);
 
+  //obstacles
   nasty= new Nastyburger(width/2+100);
+  hss = new Hash(width/4+100);
+
+  //Transition Krabby Patties
+  kp = new KPatty(width/2);
 
   //initialize level 2
   chumBucket = loadImage("chum_bucket.jpg");
@@ -75,11 +77,15 @@ void setup() {
   winScreen = loadImage("winner screen.png");
   loseScreen = loadImage("losing screen.png");
 
-  //instruction screen objects
+  //initialize instruction screen objects
   instruNasty = new Nastyburger(width/2 - 150);
   instruKelp = new Kelp(width/2, height-100);
+  instruHash = new Hash(width/2 +150);
+  
+  //make instruction screen objects larger
   instruNasty.sz.mult(2);
   instruKelp.sz.mult(2);
+  instruHash.sz.mult(1.5);
 }
 
 //to make it go to instruction screen after clicking
@@ -123,6 +129,8 @@ void draw() {
       instruNasty.loc.y = height-100;
       instruNasty.display();
       instruKelp.display();
+      instruHash.loc.y = instruNasty.loc.y;
+      instruHash.display();
 
       //make rectangle go under text for easier reading
       fill(255,75);
@@ -190,6 +198,12 @@ void draw() {
     nasty.hurtSponge(sponge);
 
     //  println(nasty.loc.x);   <-- for testing nasty
+    
+    //Hash Slinging Slasher
+    hss.display();
+    hss.move();
+    hss.jump();
+    hss.killSponge(sponge);
 
     //END OF LEVEL 1
     //if Spongebob reaches the end of the screen...

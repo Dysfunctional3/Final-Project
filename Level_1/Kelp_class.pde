@@ -1,5 +1,7 @@
 //Kelp
 
+//LATER: add kelp to Level 2 (use array)
+
 class Kelp {
 
   //declare

@@ -11,9 +11,9 @@ class KPatty {
 
   KPatty(float x) {
     //initialize variables
-    x = locx;
+    locx = x;
     kPatty= loadImage("patty.png");
-    sz= new PVector(kPatty.width/5, kPatty.height/5);
+    sz= new PVector(kPatty.width/10, kPatty.height/10);
     loc= new PVector(locx, height-sz.y/2);
   }
 
