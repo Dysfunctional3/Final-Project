@@ -118,7 +118,7 @@ void draw() {
 
       //show text
       textSize(30);
-      fill(0);
+      fill(255);
       text("Click anywhere for instructions", width/2, 5*height/6);
     }
 
@@ -143,7 +143,7 @@ void draw() {
 
       //show text
       textSize(25);
-      fill(0);
+      fill(255);
 
       text("Click anywhere to play", width/2, height-10);
 
@@ -273,7 +273,7 @@ void draw() {
     background(winScreen);
     //you win! background
     textSize(50);
-    fill(0);
+    fill(255);
     text("Click anywhere to play again", width/2, height-150);    //<--- change location later
     if (mousePressed) {
       sponge.life = 10;

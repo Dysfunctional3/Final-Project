@@ -7,6 +7,8 @@ class Spongebob {
   boolean isjumping;
   boolean onBarrel;
   float ground;
+  PImage spongeleft;
+  PImage spongejump;
 
   //life
   int life;
@@ -14,6 +16,8 @@ class Spongebob {
   Spongebob() {
     ground=height;
     spongebob= loadImage("basic spongebob edit.png");
+    spongeleft= loadImage("spongeleft.png");
+    spongejump= loadImage("sponge_jump.png");
     sz= new PVector(2*spongebob.width/3, 2*spongebob.height/3);   //<--- make spongebob 2/3 the image size
     vel= new PVector(0, 0);
     loc= new PVector(sz.x/2, ground-sz.y/2);
@@ -28,15 +32,21 @@ class Spongebob {
 
   void textDisplay() {
     textSize(25);
-    fill(0,0,255);
+    fill(0, 0, 255);
 
     //display number of lives
     text("Lives: " + life, 100, 30);
   }
 
 
-  void display() {
-    image(spongebob, loc.x, loc.y, sz.x, sz.y);
+  void display() { 
+    if (keyCode==LEFT) {
+      image(spongeleft, loc.x, loc.y, sz.x, sz.y);
+    } else if (keyCode==' ') {
+      image(spongejump, loc.x, loc.y, sz.x, sz.y);
+    } else {
+      image(spongebob, loc.x, loc.y, sz.x, sz.y);
+    }
   }
 
 
@@ -128,7 +138,6 @@ class Spongebob {
     }
   }
 }
-
 
 
 
