@@ -20,6 +20,7 @@ Barrel barr2;
 Barrel barr3;
 Spongebob sponge;
 Nastyburger nasty;
+Nastyburger nasty2;
 Hash hss;
 
 //transition screen
@@ -55,11 +56,12 @@ void setup() {
 
   //barrels
   barr = new Barrel(200);
-  barr2 = new Barrel(700);
-  barr3 = new Barrel(1200);
+  barr2 = new Barrel(750);
+  barr3 = new Barrel(1300);
 
   //obstacles
-  nasty= new Nastyburger(width/2+100);
+  nasty= new Nastyburger(width/2+200);
+  nasty2= new Nastyburger(width-400);
   hss = new Hash(width/4+100);
 
   //Transition Krabby Patties
@@ -196,6 +198,11 @@ void draw() {
     nasty.move();
     nasty.bounceOffBarrels(barr2, barr3);
     nasty.hurtSponge(sponge);
+    
+    nasty2.display();
+    nasty2.move();
+    nasty2.bounceOffBarrels(barr2, barr3);
+    nasty2.hurtSponge(sponge);
 
     //  println(nasty.loc.x);   <-- for testing nasty
     

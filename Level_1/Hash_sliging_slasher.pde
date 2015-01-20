@@ -20,31 +20,36 @@ class Hash {
     acc= new PVector(0, 0);
     hashslinger= loadImage("hash_slinging_slasher.png");
     sz = new PVector(hashslinger.width/4, hashslinger.height/4);
-    loc= new PVector(locx, height-sz.y);
+    loc= new PVector(locx, height-sz.y/2);
     
     hashDelay = 0;
-    hashFinalDelay = 60;
+    hashFinalDelay = 120;
   }
   void display() {
     //display hash slinger image
     image(hashslinger, loc.x, loc.y, sz.x, sz.y);
+    
+    //hole
+    fill(0);
+    ellipse(loc.x, height,sz.x,10);
+    
   }
   void move() {
     //move hash slinger
     vel.add(acc);
     loc.add(vel);
+    hashDelay ++;
   }
 
   void jump() {
     //hashslinger jumping
-    hashDelay ++;
     
     //if it's not jumping
     if (!hashJumping && hashDelay == hashFinalDelay) {
-      vel.y=-4;
+      vel.y=-6;
       acc.y=.15;
+      hashDelay=0;
       hashJumping=true;
-      hashDelay = 0;
     }
     //once it comes back to the ground...
     if (hashJumping && loc.y +sz.y/2>=height) {
