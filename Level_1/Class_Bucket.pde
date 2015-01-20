@@ -14,8 +14,8 @@ class Bucket {
     acc = new PVector(0, .15);
     //Bucket image
     
-    bucketpic = loadImage("nasty_patty.png");   //<--- LATER: get chum bucket bucket picture
-    sz = new PVector(bucketpic.width/2, bucketpic.height/2);
+    bucketpic = loadImage("bucket.png");   //<--- LATER: get chum bucket bucket picture
+    sz = new PVector(bucketpic.width/4, bucketpic.height/4);
 
     //Age of bucket
     bLife = 255;
