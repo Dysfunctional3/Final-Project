@@ -13,8 +13,8 @@ class Nastyburger {
   Nastyburger(float x) {
     //initialize variables
     locx= x;
-    sz= new PVector(100, 50);
     nastyburger= loadImage("nasty_patty.png");
+    sz= new PVector(nastyburger.width/2, nastyburger.height/2);
     vel= new PVector(1, 0);
     loc= new PVector(locx, height-sz.y/2);
     acc= new PVector(0, 0);
@@ -30,11 +30,11 @@ class Nastyburger {
 
 
     //bounce off right screen
-    if (loc.x+sz.x/4>width) {   //<--- should be sz.x/2; CROP IMAGES TUESDAY
+    if (loc.x+sz.x/2>width) {   //<--- should be sz.x/2; CROP IMAGES TUESDAY
       vel.x*=-1;
     }
     //bounce off left screen
-    if (loc.x-sz.x/5<0) {       // same problem as above
+    if (loc.x-sz.x/2<0) {       // same problem as above
       vel.x*=-1;
     }
   }

@@ -25,11 +25,17 @@ class KPatty {
     //if Spongebob touches, add one life
     if (dist(loc.x, loc.y, s.loc.x, s.loc.y) < sz.x/2+s.sz.x/2) {
       s.life++;
-      
+
       //get off screen after use
       loc.x = -sz.x/2;
-      
     }
+
+    //make krabby patty return when playing again  
+    //    void returnAfterEnd(){
+    //      if (
+    //        loc.x = locx;
+    //    }
+    //  }
   }
-}
+  }
 
