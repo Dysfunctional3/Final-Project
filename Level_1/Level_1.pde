@@ -108,10 +108,13 @@ void setup() {
   kpSys = new KPSystem();
 
   //LEVEL 2
+  
   chumBucket = loadImage("chum_bucket.jpg");
   
+  //bucket system
   en = new EnemySystem();
   
+  //formula
   form = new Formula();
 
 
