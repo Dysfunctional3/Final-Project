@@ -61,6 +61,9 @@ KPSystem kpSys;
 
 PImage chumBucket;
 
+//formula
+Formula form;
+
 //bucket system
 EnemySystem en;
 
@@ -106,7 +109,10 @@ void setup() {
 
   //LEVEL 2
   chumBucket = loadImage("chum_bucket.jpg");
+  
   en = new EnemySystem();
+  
+  form = new Formula();
 
 
   //initialize screens
@@ -358,12 +364,14 @@ void draw() {
     //bucket system
     en.run();
     en.addBucket();
+    
+    //formula
+    form.display();
+    form.winGame(sponge);
 
     //if spongebob reaches the right side of screen
     if (sponge.loc.x > width - sponge.sz.x/2) {
-
-      //go to winning screen
-      level = 2.5;
+       sponge.loc.x= width-sponge.sz.x/2;
     }
   }
 
@@ -441,8 +449,6 @@ void draw() {
     }
   }
 }
-
-
 
 
 //if spacebar pressed, jump
