@@ -1,6 +1,4 @@
-//Kelp
-
-//LATER: add kelp to Level 2 (use array)
+//KELP (INSTRUCTION SCREEN)
 
 class Kelp {
 

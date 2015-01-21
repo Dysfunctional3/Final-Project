@@ -1,20 +1,33 @@
-//Level 2 Buckets
+//LEVEL 2 BUCKETS
 
 class Bucket {
+  //Declare
   PVector loc, vel, acc;
   PVector sz;
+
+  //life and death
   float bLife;
   float decay;
+
+  //picture
   PImage bucketpic;
 
   Bucket() {
-    //INITIALIZE VARIABLES
+    //initialize variables
+
+    //location
     loc = new PVector(width/2, 0);
-    vel = new PVector(random(-10,10), random(-3,3));
+
+    //velocity
+    vel = new PVector(random(-10, 10), random(-3, 3));
+
+    //downward acceleration
     acc = new PVector(0, .15);
+
     //Bucket image
-    
     bucketpic = loadImage("bucket.png");   //<--- LATER: get chum bucket bucket picture
+
+      //size
     sz = new PVector(bucketpic.width/4, bucketpic.height/4);
 
     //Age of bucket
@@ -23,20 +36,20 @@ class Bucket {
   }
 
 
-  //MOVE Buckets
+  //Move Buckets
   void move() { 
     vel.add(acc);
     loc.add(vel);
   }
 
 
-  //DISPLAY Buckets
+  //Display Buckets
   void display() {    
     image(bucketpic, loc.x, loc.y, sz.x, sz.y);
   }
 
 
-  //BUCKET DIES WHEN LEAVES SCREEN
+  //when leave screen, kill off
   void leave() { 
     if (loc.x + sz.x/2 > width || loc.x - sz.x/2 < 0) {
       bLife-=decay;
@@ -46,10 +59,10 @@ class Bucket {
     }
   }
 
-  //IS THE BUCKET GONE?
+  //Is the bucket gone?
   boolean isGone() { 
 
-    //RETURN TRUE IF BUCKET GONE, FALSE IF NOT
+    //Return true if yes, false if no
     if (bLife <=0) {
       return true;
     } else {
@@ -57,6 +70,7 @@ class Bucket {
     }
   }
 
+  //if in contact, kill Spongebob
   void hurtSponge(Spongebob s) {
     if (dist(loc.x, loc.y, s.loc.x, s.loc.y) < sz.y/2+s.sz.x/2) {
       s.life--;              //loses 1 life if in contact
