@@ -58,7 +58,7 @@ class Spongebob {
     
     //if on transition page and level 1 page, text white
     //if not, keep it blue
-    if (level != 1.5 || level != 1){
+    if (level != 1.5){
     fill(0, 100, 255);
     } else{
     fill(255);

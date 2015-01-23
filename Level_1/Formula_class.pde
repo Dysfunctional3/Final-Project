@@ -19,7 +19,7 @@ class Formula{
     sz= new PVector(form.width/10, form.height/10);
     
     //location
-    loc= new PVector(width - sz.x/2, height-sz.y/2);
+    loc= new PVector(width - sz.x, height-sz.y);
     
   }
   

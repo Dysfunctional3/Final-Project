@@ -54,6 +54,10 @@ Hash hss;
 //background
 PImage transScreen;
 
+//stove picture 
+PImage stove;
+PVector stoveSz;
+
 //shooting krabby patties
 KPSystem kpSys;
 
@@ -104,16 +108,20 @@ void setup() {
   nasty2= new Nastyburger(width-400);
   hss = new Hash(width/4+50);
 
+  //stove picture and size
+  stove= loadImage("grill.png");
+  stoveSz = new PVector (stove.width/3, stove.height/3);
+
   //Transition Krabby Patties
   kpSys = new KPSystem();
 
   //LEVEL 2
-  
+
   chumBucket = loadImage("chum_bucket.jpg");
-  
+
   //bucket system
   en = new EnemySystem();
-  
+
   //formula
   form = new Formula();
 
@@ -166,7 +174,7 @@ void draw() {
 
       //show text
       textSize(30);
-      fill(0);
+      fill(0, 0, 255);
       text("Click anywhere for instructions", width/2, 5*height/6);
     }
 
@@ -194,7 +202,7 @@ void draw() {
 
       //show text
       textSize(25);
-      fill(0);
+      fill(0, 255, 0);
 
       text("Click anywhere to play", width/2, height-10);
 
@@ -301,7 +309,7 @@ void draw() {
     nasty2.bounceOffBarrels(barr2, barr3);
     nasty2.hurtSponge(sponge);
 
-        //  println(nasty.loc.x);   <-- for testing nasty
+    //  println(nasty.loc.x);   <-- for testing nasty
 
     //Hash Slinging Slasher
     hss.display();
@@ -328,9 +336,12 @@ void draw() {
     //transition picture
     background(transScreen);   //<--- replace with transition
 
-    //Krabby Patty system for extra lives
+      //Krabby Patty system for extra lives
     kpSys.run();
     kpSys.addKP();
+
+    //stove image
+    image(stove, width/2, height- stoveSz.y/2, stoveSz.x, stoveSz.y);
 
     //Spongebob
     sponge.display();
@@ -367,14 +378,14 @@ void draw() {
     //bucket system
     en.run();
     en.addBucket();
-    
+
     //formula
     form.display();
     form.winGame(sponge);
 
     //if spongebob reaches the right side of screen
     if (sponge.loc.x > width - sponge.sz.x/2) {
-       sponge.loc.x= width-sponge.sz.x/2;
+      sponge.loc.x= width-sponge.sz.x/2;
     }
   }
 
@@ -387,7 +398,7 @@ void draw() {
 
     //text
     textSize(50);
-    fill(0,150,255);
+    fill(255, 0, 0);
     text("Click anywhere to play again", width/2, height-100);
 
     //press mouse to play again
@@ -419,7 +430,7 @@ void draw() {
   //if Spongebob dies
   if (sponge.isDead()) {
     //losing screen background
-      background(loseScreen);
+    background(loseScreen);
 
     //text size subject to change
     textSize(50);   
