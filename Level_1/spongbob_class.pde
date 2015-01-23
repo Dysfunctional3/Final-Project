@@ -149,6 +149,8 @@ class Spongebob {
       //      if(keyCode==RIGHT){
       //       loc.x+=1; 
       //      }
+
+
       isjumping=true;
     }
   }
