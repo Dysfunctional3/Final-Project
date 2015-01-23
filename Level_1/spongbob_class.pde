@@ -2,13 +2,13 @@
 
 class Spongebob {
   //declare variables
-  
+
   PVector sz;
   PVector loc, acc, vel;
-  
+
   boolean isjumping;
   boolean onBarrel;
-  
+
   //Spongebob images
   PImage spongebob;
   PImage spongeleft;
@@ -36,7 +36,7 @@ class Spongebob {
 
     //Starts out in lower left corner
     loc= new PVector(sz.x/2, height-sz.y/2);
-    
+
     //no acceleration until jumping
     acc= new PVector(0, 0);
 
@@ -52,16 +52,16 @@ class Spongebob {
 
   //display lives on screen
   void textDisplay() {
-    
+
     //text properties
     textSize(25);
-    
+
     //if on transition page and level 1 page, text white
     //if not, keep it blue
-    if (level != 1.5){
-    fill(0, 100, 255);
-    } else{
-    fill(255);
+    if (level != 1.5) {
+      fill(0, 100, 255);
+    } else {
+      fill(255);
     }
 
     //display number of lives
@@ -83,9 +83,12 @@ class Spongebob {
           //if left key pressed, use left Spongebob
           if (keyCode==LEFT) {
             image(spongeleft, loc.x, loc.y, sz.x, sz.y);
-          }
-          //if right key pressed, use right Spongebob
+          } else
+            //if right key pressed, use right Spongebob
           if (keyCode == RIGHT) {
+            image(spongebob, loc.x, loc.y, sz.x, sz.y);
+          } else {
+            //if any other key is pressed, still jut show right facing picture
             image(spongebob, loc.x, loc.y, sz.x, sz.y);
           }
         } else {
@@ -96,12 +99,12 @@ class Spongebob {
     }
   }
 
-//Spongebob moves
+  //Spongebob moves
   void move() {
     //add PVectors
     vel.add(acc);
     loc.add(vel);
-    
+
     //if it's in the process of jumping...
     if (isjumping && loc.y +sz.y/2>=height) {
       // stop jumping when it hits the ground
@@ -120,7 +123,7 @@ class Spongebob {
         //no key pressed, don't move
         loc.x+=0;
       }
-      
+
       //if left key pressed, move left
       if (keyCode==LEFT) {
         loc.x+=-3;
@@ -135,10 +138,10 @@ class Spongebob {
       loc.x = sz.x/2;
     }
   }
-  
+
   //Make spongebob jump
   void jump() {
-    
+
     //if it's not currently jumping, allow Spongebob to jump
     if (!isjumping) {
       vel.y=-6;
@@ -150,9 +153,9 @@ class Spongebob {
     }
   }
 
-//Landing on barrels
+  //Landing on barrels
   void landOnBarrel(Barrel b) {
-    
+
     // If land on barrel after jumping...
     if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel
       if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
@@ -161,14 +164,14 @@ class Spongebob {
         vel.y=0;
         acc.y=0;
         isjumping=false;
-        
+
         //checking if barrels working
         println("landOnBarrel");
-        
+
         onBarrel = true;
       }
     } else
-    //else, if Spongebob is on barrel and gets off, fall.
+      //else, if Spongebob is on barrel and gets off, fall.
     if (onBarrel && !(loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2)) {
       isjumping = true; 
       acc.y = .15;
@@ -176,9 +179,9 @@ class Spongebob {
     }
   }
 
-// If spongebob touches the sides of the barrels
+  // If spongebob touches the sides of the barrels
   void touchBarrel( Barrel b) {  
-    
+
     //Not letting Spongebob go through sides
     if (abs(loc.x - b.loc.x) <= sz.x/2 + b.sz.x/2) {
       if (loc.y +  sz.y/2 > b.loc.y-b.sz.y/2 && loc.y - sz.y/2 < b.loc.y+b.sz.y/2) {
