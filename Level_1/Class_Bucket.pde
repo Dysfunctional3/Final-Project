@@ -1,7 +1,8 @@
 //LEVEL 2 BUCKETS
 
 class Bucket {
-  //Declare
+  
+  //declare
   PVector loc, vel, acc;
   PVector sz;
 
@@ -27,7 +28,7 @@ class Bucket {
     //Bucket image
     bucketpic = loadImage("bucket.png");   //<--- LATER: get chum bucket bucket picture
 
-      //size
+    //size
     sz = new PVector(bucketpic.width/4, bucketpic.height/4);
 
     //Age of bucket

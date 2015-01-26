@@ -3,10 +3,14 @@
 class Spongebob {
   //declare variables
 
+  //size, location, velocity, acceleration
   PVector sz;
   PVector loc, acc, vel;
 
+  //is Spongebob currently jumping?
   boolean isjumping;
+
+  //is Spongebob currently on a barrel?
   boolean onBarrel;
 
   //Spongebob images
@@ -14,12 +18,13 @@ class Spongebob {
   PImage spongeleft;
   PImage spongejump;
 
-  //life
+  //life of Spongebob
   int life;
 
   Spongebob() {
+    //initialize
 
-    //Spongebob with right key
+    //Spongebob with right key or neutral
     spongebob= loadImage("basic spongebob edit.png");
 
     //Spongebob with left key
@@ -53,11 +58,8 @@ class Spongebob {
   //display lives on screen
   void textDisplay() {
 
-    //text properties
-    textSize(25);
-
-    //if on transition page and level 1 page, text white
-    //if not, keep it blue
+    //if on transition page, blue
+    //if not, keep it white
     if (level != 1.5) {
       fill(0, 100, 255);
     } else {
@@ -65,6 +67,7 @@ class Spongebob {
     }
 
     //display number of lives
+    textSize(25);
     text("Lives: " + life, 100, 30);
   }
 
@@ -78,8 +81,10 @@ class Spongebob {
     } else { 
       //if it's not jumping and...
       if (!isjumping) {
+
         //...and a key is pressed...
         if (keyPressed) {
+
           //if left key pressed, use left Spongebob
           if (keyCode==LEFT) {
             image(spongeleft, loc.x, loc.y, sz.x, sz.y);
@@ -88,7 +93,7 @@ class Spongebob {
           if (keyCode == RIGHT) {
             image(spongebob, loc.x, loc.y, sz.x, sz.y);
           } else {
-            //if any other key is pressed, still jut show right facing picture
+            //if any other key is pressed, still just show right facing picture
             image(spongebob, loc.x, loc.y, sz.x, sz.y);
           }
         } else {
@@ -101,21 +106,24 @@ class Spongebob {
 
   //Spongebob moves
   void move() {
-    //add PVectors
     vel.add(acc);
     loc.add(vel);
 
     //if it's in the process of jumping...
     if (isjumping && loc.y +sz.y/2>=height) {
+
       // stop jumping when it hits the ground
       loc.y=height-sz.y/2;
       vel.y=0;
       acc.y=0;
+
+      //not jumping anymore
       isjumping=false;
     }
 
-    //if a key is pressed pressed...
+    //if a key is pressed...
     if (keyPressed) {
+
       //if right key pressed, move right
       if (keyCode==RIGHT) {
         loc.x+=3;
@@ -146,11 +154,8 @@ class Spongebob {
     if (!isjumping) {
       vel.y=-6;
       acc.y=.15;
-      //      if(keyCode==RIGHT){
-      //       loc.x+=1; 
-      //      }
 
-
+      //is currently jumping
       isjumping=true;
     }
   }
@@ -160,39 +165,59 @@ class Spongebob {
 
     // If land on barrel after jumping...
     if (isjumping && loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2) {  //if jumping and location moves to above the barrel
+
+      //if touching barrel in y direction...
       if (loc.y +sz.y/2>=b.loc.y-b.sz.y/2) {
+
         //stay on top of barrel
         loc.y=b.loc.y-b.sz.y/2-sz.y/2;
+
+        //stop jumping
         vel.y=0;
         acc.y=0;
+
+        //not jumping anymore
         isjumping=false;
 
         //checking if barrels working
         println("landOnBarrel");
 
+        //on barrel now
         onBarrel = true;
       }
     } else
-      //else, if Spongebob is on barrel and gets off, fall.
+      //else, if Spongebob is already on barrel and gets off...
     if (onBarrel && !(loc.x + sz.x/2> b.loc.x - b.sz.x/2 && loc.x - sz.x/2 <= b.loc.x + b.sz.x/2)) {
+
+      //is currently "jumping" (in air)
       isjumping = true; 
+      
+      //gravity pulls down
       acc.y = .15;
+      
+      //not on barrel anymore
       onBarrel = false;
     }
   }
+
 
   // If spongebob touches the sides of the barrels
   void touchBarrel( Barrel b) {  
 
     //Not letting Spongebob go through sides
+    //if touching...
     if (abs(loc.x - b.loc.x) <= sz.x/2 + b.sz.x/2) {
       if (loc.y +  sz.y/2 > b.loc.y-b.sz.y/2 && loc.y - sz.y/2 < b.loc.y+b.sz.y/2) {
+        
         //if coming from the right
         if (keyCode == RIGHT) {
+          //don't go through
           loc.x = b.loc.x -b.sz.x/2-sz.x/2;
         }
+        
         //if coming from the left
         if (keyCode == LEFT) {
+          //don't go through
           loc.x = b.loc.x +b.sz.x/2+sz.x/2;
         }
       }
@@ -201,6 +226,9 @@ class Spongebob {
 
   // Is Spongebob dead?
   boolean isDead() {
+    
+    //if yes, return true; if no, return false
+    
     if (life < 1) {
       return true;
     } else {

@@ -1,26 +1,31 @@
 //TRANSITION KRABBY PATTIES
 
 class KPatty {
+  
   //declare variables
+  
+  //size, location, velocity, acceleration
   PVector sz;
   PVector loc,vel,acc;
   
+  //image
   PImage kPatty;
   
   //life and death of KP
   int kLife;
   int decay;
   
-  //for specifying where the location is
-  float locx;
-  float locy;
+  //for changing location
+  float locx, locy;
   
   //is KP dead?
   boolean kpDead = false;
 
   KPatty() {
+    
     //initialize variables
     
+    //image
     kPatty= loadImage("patty.png");
     
     //size of KP
@@ -48,15 +53,20 @@ class KPatty {
 
   //if KP leave screen, kill off
   void leave() { 
+    
+    //if off the sides of screen
     if (loc.x + sz.x/2 > width || loc.x - sz.x/2 < 0) {
       kLife-=decay;
     }
+    
+    //if below the screen
     if (loc.y - sz.y/2 > height) {
       kLife-=decay;
     }
   }
 
-  //display and collect
+
+  //display and be collected
   void run(Spongebob s) {
     
     //display kPatty
@@ -71,7 +81,7 @@ class KPatty {
 
   }
 
-  //is KP death?
+  //is KP dead?
   boolean isGone() { 
     //return true if patty is dead, false if not
     if (kLife <=0 && kpDead) {
@@ -83,8 +93,11 @@ class KPatty {
   
   //to change the location of KP
   void changeLoc( float x, float y){
+    
     locx = x;
-    locy= y;
+    locy = y;
+    
+    //set specified location
     loc.set(locx,locy);
   }
   

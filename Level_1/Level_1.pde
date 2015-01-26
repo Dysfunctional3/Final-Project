@@ -1,22 +1,24 @@
-////////////////////////////////////////
-////////////////////////////////////////
-/////////    SUPER SPONGEBOB    ////////
-////////////////////////////////////////
-////////////////////////////////////////
+//////////////////////////////////////////
+//////////////////////////////////////////
+/////////    SUPER SPONGEBOB!!    ////////
+//////////////////////////////////////////
+//////////////////////////////////////////
 
 
 //declare
 
+//level
 float level;
 
 //START SCREEN
 PImage startScreen;
 
+
 //INSTRUCTION SCREEN
 
 PImage instruScreen;
 
-//"avoid" these
+//"AVOID" these
 Nastyburger instruNasty;
 Kelp instruKelp;
 Hash instruHash;
@@ -61,18 +63,22 @@ PVector stoveSz;
 //shooting krabby patties
 KPSystem kpSys;
 
+
 //LEVEL 2
 
+//background
 PImage chumBucket;
 
-//formula
+//winning formula
 Formula form;
 
 //bucket system
 EnemySystem en;
 
+
 //WINNING SCREEN
 PImage winScreen;
+
 
 //LOSING SCREEN
 PImage loseScreen;
@@ -89,8 +95,13 @@ void setup() {
   //start with level 0 (start screen)
   level = 0;
 
+
   //LEVEL 1
+
+  //load krusty krab
   krustyKrab = loadImage("krusty_krab_final.jpg");
+
+  //initialize Spongebob
   sponge = new Spongebob ();
 
   //barrels
@@ -112,11 +123,16 @@ void setup() {
   stove= loadImage("grill.png");
   stoveSz = new PVector (stove.width/3, stove.height/3);
 
+
+  //TRANSITION
+
   //Transition Krabby Patties
   kpSys = new KPSystem();
 
+
   //LEVEL 2
 
+  //load Chum Bucket
   chumBucket = loadImage("chum_bucket.jpg");
 
   //bucket system
@@ -133,7 +149,8 @@ void setup() {
   winScreen = loadImage("winner screen.png");
   loseScreen = loadImage("losing screen.png");
 
-  //ISNTRUCTION PAGE
+
+  //ISNTRUCTION SCREEN
 
   //initialize instruction screen objects
   instruNasty = new Nastyburger(width/2 - 150);
@@ -146,14 +163,17 @@ void setup() {
   instruHash.sz.mult(1.5);
 }
 
-//to make it go to instruction screen after clicking
+
+//to make start screen go to instruction screen after clicking
 void mouseClicked() {
-  if (!pressedOnce) {
+
+  if (!pressedOnce && level == 0) {    //only works in level 0
     pressedOnce = true;
-  } else if (pressedOnce) {
+  } else if (pressedOnce && level ==0) {
     pressedOnce = false;
   }
 }
+
 
 
 void draw() {
@@ -163,6 +183,7 @@ void draw() {
 
     //if mouse not clicked yet...
     if (!pressedOnce) {
+
       //start screen picture
       background(startScreen);
 
@@ -206,8 +227,13 @@ void draw() {
 
       text("Click anywhere to play", width/2, height-10);
 
-      //if clicked the second time, go to level 1
+      //if clicked the second time...
       if (mousePressed) {
+
+        //set pressedOnce back to false (so it will start on start screen again)
+        pressedOnce = false;
+
+        //set level to 1
         level = 1;
       }
     }
@@ -216,18 +242,19 @@ void draw() {
 
   //LEVEL 1 - Krusty Krab
   if (level == 1) {
+
     //set background
     background(krustyKrab);
 
+    //display "level 1" text
     fill(0, 255, 0);
-
-    //display "level 1"
     text("Level 1: The Krusty Krab", width/2, 30);
 
-    //Spongebob (in every level)
+    //Spongebob
     sponge.textDisplay();
     sponge.move();
     sponge.display();
+
 
     //barrels in level 1
 
@@ -241,10 +268,12 @@ void draw() {
     barr2.deathByKelp(sponge);
     barr3.deathByKelp(sponge);
 
+
     //patties in level 1
 
     //patty 1
     if (!kP.isGone()) {
+      //if not dead, set location and run
       kP.changeLoc(200, 350);
       kP.run(sponge);
     } else {
@@ -255,6 +284,7 @@ void draw() {
 
     //patty 2
     if (!kP2.isGone()) {
+      //if not dead, set location and run
       kP2.changeLoc(650, 350);
       kP2.run(sponge);
     } else {
@@ -265,6 +295,7 @@ void draw() {
 
     //patty 3
     if (!kP3.isGone()) {
+      //if not dead, set location and run
       kP3.changeLoc(1300, 350);
       kP3.run(sponge);
     } else {
@@ -277,19 +308,19 @@ void draw() {
     //Spongebob's interaction with barrels
 
     //barrel 1
-    if (sponge.loc.dist(barr.loc) <= 200) {
+    if (sponge.loc.dist(barr.loc) <= 200) {    //only work if locations close
       sponge.landOnBarrel(barr);
       sponge.touchBarrel(barr);
     }
 
     //barrel 2
-    if (sponge.loc.dist(barr2.loc) <= 200) {
+    if (sponge.loc.dist(barr2.loc) <= 200) {    //only work if locations close
       sponge.landOnBarrel(barr2);
       sponge.touchBarrel(barr2);
     }
 
     //barrel 3
-    if (sponge.loc.dist(barr3.loc) <= 200) {
+    if (sponge.loc.dist(barr3.loc) <= 200) {    //only work if locations close
       sponge.landOnBarrel(barr3);
       sponge.touchBarrel(barr3);
     }
@@ -318,7 +349,6 @@ void draw() {
     hss.killSponge(sponge);
 
     //end of level 1
-
     //if Spongebob reaches the end of the screen...
     if (sponge.loc.x > width - sponge.sz.x/2) {
 
@@ -333,6 +363,7 @@ void draw() {
 
   //TRANSITION between Level 1 and 2
   if (level == 1.5) {
+
     //transition picture
     background(transScreen);   //<--- replace with transition
 
@@ -340,7 +371,7 @@ void draw() {
     kpSys.run();
     kpSys.addKP();
 
-    //stove image
+    //stove image (for aestetics)
     image(stove, width/2, height- stoveSz.y/2, stoveSz.x, stoveSz.y);
 
     //Spongebob
@@ -362,15 +393,15 @@ void draw() {
 
   //LEVEL 2 - Chum Bucket (Boss Level)
   if (level == 2) {
+
     //background set
     background(chumBucket);
 
+    //diplay "level 2" text
     fill(255, 0, 0);
-
-    //diplay "level 2"
     text("Level 2: The Chum Bucket", width/2, 30);
 
-    //spongebob
+    //Spongebob
     sponge.display();
     sponge.textDisplay();
     sponge.move();
@@ -383,20 +414,21 @@ void draw() {
     form.display();
     form.winGame(sponge);
 
-    //if spongebob reaches the right side of screen
+    //if spongebob reaches the right side of screen...
     if (sponge.loc.x > width - sponge.sz.x/2) {
+      //don't let him pass
       sponge.loc.x= width-sponge.sz.x/2;
     }
   }
 
 
-  //if Spongebob wins
+  //if Spongebob wins (by touching formula)
   if (level == 2.5) {
 
     //you win! background
     background(winScreen);
 
-    //text
+    //display text
     textSize(50);
     fill(255, 0, 0);
     text("Click anywhere to play again", width/2, height-100);
@@ -411,35 +443,38 @@ void draw() {
       sponge.loc.set(sponge.sz.x/2, height-sponge.sz.y/2);
 
       //reset level 1 patties
-      if (kP.isGone()) {
+      if (kP.isGone()) {      //patty 1
         kP.kpDead = false;
       }
-      if (kP2.isGone()) {
+      if (kP2.isGone()) {     //patty 2
         kP2.kpDead = false;
       }
-      if (kP3.isGone()) {
+      if (kP3.isGone()) {     //patty 3
         kP3.kpDead = false;
       }
 
-      //restart
+      //go back to start screen
       level = 0;
     }
   }
 
 
-  //if Spongebob dies
+  //if Spongebob dies (from touching obstacles)
   if (sponge.isDead()) {
+
     //losing screen background
     background(loseScreen);
 
-    //text size subject to change
+    //display text
     textSize(50);   
     fill(255);
     text("Press 'r' to try again", width/2, height-100);
 
     if (keyPressed) { 
       //if r pressed
-      if (key == 'r') {    
+
+        if (key == 'r') {    
+
         //reset life
         sponge.life = 10;  
 
@@ -447,17 +482,17 @@ void draw() {
         sponge.loc.set(sponge.sz.x/2, height-sponge.sz.y/2);
 
         //reset level 1 patties
-        if (kP.isGone()) {
+        if (kP.isGone()) {       //patty 1
           kP.kpDead = false;
         }
-        if (kP2.isGone()) {
+        if (kP2.isGone()) {      //patty 2
           kP2.kpDead = false;
         }
-        if (kP3.isGone()) {
+        if (kP3.isGone()) {      //patty 3
           kP3.kpDead = false;
         }
 
-        //restart
+        //go back to start screen
         level = 0;
       }
     }
@@ -465,7 +500,7 @@ void draw() {
 }
 
 
-//if spacebar pressed, jump
+//if spacebar pressed, Spongebob jumps
 void keyPressed() {
   if (keyCode==' ') {
     sponge.jump();

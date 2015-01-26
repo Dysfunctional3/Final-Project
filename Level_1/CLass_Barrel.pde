@@ -51,10 +51,15 @@ class Barrel {
 
   //display the images
   void display() {
+    
+    //barrel
     image(barrelpic, loc.x, loc.y, sz.x, sz.y);
+    
+    //kelps
     image(kelp, kloc.x, kloc.y, ksz.x, ksz.y);
     image(kelp, k2loc.x, k2loc.y, ksz.x, ksz.y);
   }
+
 
 //kelp kills Spongebob
   void deathByKelp(Spongebob s) {
